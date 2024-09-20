@@ -1,0 +1,224 @@
+import React, { useEffect, useState } from "react";
+import TopNewNav from "../../moleculars/TopNewNav";
+import PaddingPwa from "../../moleculars/PaddingPwa";
+import ButtonComponent from "../../atoms/ButtonComponent";
+import Gap from "../../moleculars/Gap";
+import ContentDetailCheckout from "../../moleculars/ContentDetailCheckout";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  badanHukumList,
+  paymentBadanHukum,
+} from "../../../redux/action/paymentAction";
+import { getNameLayanan } from "../../utils/layananService";
+import { useFormik } from "formik";
+import HeaderCheckoutLayanan from "../../moleculars/HeaderCheckoutLayanan";
+import TitleHeader from "../../utils/TitleHeader";
+import ModalComponent from "../../moleculars/ModalComponent";
+import Iframe from "react-iframe";
+import { getPriceMitra } from "../../../redux/slices/pengamanan-korporat/KorporatSlices.jsx";
+
+import { decode as base64_decode } from "base-64";
+import { getParams } from "../../moleculars/GetParams";
+import CryptoJS from "crypto-js";
+
+
+function DetailPengamananKorporatMobileD() {
+  const secretKey = `${process.env.REACT_APP_SECRET_KEY}`;
+  TitleHeader("Halaman rincian");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const params = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const storeData = useSelector((store) => store?.global);
+  const { detail_data_layanan, isError, message } = storeData;
+
+  const [getP, setP] = useState(null);
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("userInfo"))
+  );
+
+  const checkParams = () => {
+    let checkP = getParams(["query"]);
+
+    if (!checkP) {
+      console.log("params tidak ditemukan");
+    } else {
+      var base64regex =
+        /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+      if (!base64regex.test(checkP.query)) {
+        console.log("data base64 tidak cocok");
+        navigate("/not-found");
+      } else {
+        let string = base64_decode(checkP.query);
+        let cryptdata = string;
+        const info2x = CryptoJS.AES.decrypt(cryptdata, secretKey).toString(
+          CryptoJS.enc.Utf8
+        );
+
+        if (!info2x) {
+          console.log("data base64 not match when decrypt");
+        } else {
+          var paramValue = JSON.parse(info2x);
+          console.log(paramValue);
+          setUser(paramValue);
+          setP(checkP.query)
+          localStorage.setItem("data", JSON.stringify(paramValue));
+        }
+        if (!localStorage.getItem("data")) {
+          if (!paramValue.user_id) {
+            console.log("salah");
+            navigate("/not-found");
+          }
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    getData();
+    checkParams();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const getData = async () => {
+    dispatch(await badanHukumList(params?.id));
+  };
+
+  const keyCrpyto = "U2FsdGVkX1+RFxINtDchhPqAxYecNts3Di1tTgbwHg0="
+
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      order_id: params?.id,
+    },
+    onSubmit: async (values) => {
+      
+      const encryptDataInvoice = CryptoJS.AES.encrypt(String(detail_data_layanan.invoice_id), keyCrpyto).toString();
+      const encryptBase64Invoice = btoa(encryptDataInvoice);
+
+      const encryptAmount = CryptoJS.AES.encrypt(`${detail_data_layanan.order_total}`, keyCrpyto).toString();
+      const encryptBase64Amount = btoa(encryptAmount);
+
+      const encryptMore = encryptBase64Invoice + '|' + encryptBase64Amount;
+
+      const updateValues = {
+        ...values,
+        encrypted_data: encryptMore
+      };
+
+      dispatch(await paymentBadanHukum(updateValues));
+    },
+  });
+
+  const renderButton = () => {
+    if (detail_data_layanan?.payment_status === "ORDER") {
+      return <ButtonComponent title="Bayar Sekarang " type="submit" />;
+    } else if (detail_data_layanan?.payment_status === "UNPAID") {
+      return (
+        <ButtonComponent
+          border="#fef5e8"
+          background="#fef5e8"
+          color="#f99f1b"
+          title="Klik untuk membayar"
+          type="button"
+          onClick={() =>
+            (window.location = `${process.env.REACT_APP_API_INVOICE_URL}${detail_data_layanan?.invoice_id}`)
+          }
+        />
+      );
+    } else if (detail_data_layanan?.payment_status === "EXPIRED") {
+      return (
+        <ButtonComponent
+          background="var(--font-color11)"
+          color="var(--bg-color7)"
+          border="var(--font-color11)"
+          title="Sudah Dibayar"
+          type="button"
+          //   onClick={() => navigate(`/account/profile/change/${id}`)}
+        />
+      );
+    } else {
+      return (
+        <ButtonComponent
+          border="var(--font-color12)"
+          background="var(--font-color12)"
+          color="var(--bg-color2)"
+          title="Sudah Dibayar"
+          type="button"
+          //   onClick={() => navigate(`/account/profile/change/${id}`)}
+        />
+      );
+    }
+  };
+  return (
+    <>
+      {/* <TopNewNav title="Ringkasan Pengamanan Usaha dan Bisnis" path={`/corporate-security-m/${storeData?.detail_data_layanan?.type === "PAS" ? "PAS" : "Trigger"}`} /> */}
+      <div className="container-class">
+        <div className="responsive-class">
+          <div className="res-class">
+            <div
+              className="dashboard-container-f"
+              style={{ marginTop: "0px" }}
+            >
+              {/* <div className="container-ketentuan-f">
+                <p>
+                  Dengan melakukan pemesanan, saya setuju dengan syarat dan
+                  ketentuan berikut:{" "}
+                  <span
+                    style={{ color: "#F99F1B", cursor: "pointer" }}
+                    onClick={() => setIsModalVisible(!isModalVisible)}
+                  >
+                    (Klik untuk membaca)
+                  </span>
+                </p>
+              </div> */}
+              <PaddingPwa padding={15}>
+                <HeaderCheckoutLayanan
+                  layanan={getNameLayanan(
+                    detail_data_layanan?.tnos_service_id,
+                    detail_data_layanan?.tnos_subservice_id
+                  )}
+                  payment_status={detail_data_layanan?.payment_status}
+                />
+
+                <ContentDetailCheckout
+                  layanan={getNameLayanan(
+                    detail_data_layanan?.tnos_service_id,
+                    detail_data_layanan?.tnos_subservice_id
+                  )}
+                  data={detail_data_layanan}
+                />
+              </PaddingPwa>
+              <Gap height={80} />
+              <form action="" onSubmit={formik.handleSubmit}>
+                {renderButton()}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ModalComponent
+        isModalVisible={isModalVisible}
+        setModalVisible={setIsModalVisible}
+        // onClick={}
+        type="pembatalan"
+      >
+        <PaddingPwa padding={5}>
+          <Iframe
+            url="https://tnosbantuan.freshdesk.com/support/solutions/articles/150000042230"
+            width="100%"
+            height="100%"
+            styles={{ minHeight: "100vh" }}
+            id=""
+            className=""
+            display="block"
+            position="relative"
+          />
+        </PaddingPwa>
+      </ModalComponent>
+    </>
+  );
+}
+
+export default DetailPengamananKorporatMobileD;

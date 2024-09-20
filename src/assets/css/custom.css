@@ -1,0 +1,203 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap");
+@import "../css/navDesktop.css";
+@import "../css/buttonWelcomePage.css";
+@import "../css/login.css";
+@import "../css/footerDesktop.css";
+@import "../css/MenuCategoriAbsolute.css";
+@import "../css/navMenuFooter.css";
+@import "../css/loader.css";
+@import "../css/slider.css";
+@import "../css/dashboard.css";
+@import "../css/fixed.css";
+@import "../css/guardMenu.css";
+@import "../css/pengacara.css";
+@import "../css/listPengacara.css";
+@import "../css/detailProfilPengacara.css";
+@import "../css/transactionHistory.css";
+@import "../css/pendampingHukum.css";
+@import "../css/formTransactionLayanan.css";
+@import "../css/notif.css";
+@import "../css/message.css";
+@import "../css/formLayananBadanHukum.css";
+@import "../css/detailRiwayat.css";
+@import "../css/profile.css";
+@import "../css/welcomePage.css";
+@import "../css/tnos-gems.css";
+@import "../css/paymentStyle.css";
+@import "../css/formInputPayment.css";
+@import "../css/responsive.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #fff;
+  --orange: #ff9416;
+  --black: #000000;
+  --abu-abu: #b5b5b5;
+  --green-black: #287c1e;
+  --gold-black: #bf9a30;
+  --emas-gelap: #cba981;
+  --green-s: #00ad4e;
+  --font: #4e4c4c;
+  --pfont: #747373;
+  --border: #d5d5d5;
+
+  /* font  */
+  --font-color1: #000000;
+  --font-color2: #7b7b7b;
+  --font-color3: #f99f1b;
+  --font-color4: #141414;
+  --font-color5: #1f44e5;
+  --font-color6: #565864;
+  --font-color7: #b80000;
+  --font-color8: #0092ff;
+  --font-color9: #ffffff;
+  --font-color10: #525252;
+  --font-color11: #db141e;
+  --font-color12: #5bad3e;
+  --font-color13: #828282;
+  --font-color14: #333333;
+  --font-color15: #f99f1b;
+  --font-color16: #f5bd02;
+
+  /* bg color  */
+  --bg-color1: #ffff;
+  --bg-color2: #eef2f8;
+  --bg-color3: #f99f1b;
+  --bg-color4: #f5f5f5;
+  --bg-color5: #ddf5ff;
+  --bg-color6: #141414;
+  --bg-color7: #ffeaeb;
+  --bg-color8: #eff7ec;
+  --bg-color9: #fef5e8;
+  --bg-color10: #fffbe6;
+
+  /* border color  */
+  --border-color1: #e0e0e0;
+  --border-color2: #a6d9ff;
+}
+
+.hide-content {
+  display: none !important;
+}
+.btn:focus {
+  box-shadow: none !important;
+}
+.p-15 {
+  padding: 15px;
+}
+
+/* .pac-container {
+  z-index: 100000 !important;
+} */
+body {
+  /* min-height: 100vh; */
+  /* background: #e8f2fc; */
+  overflow-x: hidden;
+  /* z-index: 1; */
+}
+button {
+  cursor: pointer !important;
+}
+a {
+  cursor: pointer !important;
+}
+.container-class {
+  background: #cdcdcd;
+  width: 100%;
+  height: 100%;
+}
+.responsive-class {
+  background: #ffff;
+}
+.res-class {
+  min-height: 100vh;
+  overflow-x: auto;
+}
+
+.container-desktop {
+  margin-top: 85px;
+  padding: 5px 5px;
+  position: relative;
+}
+.responsive-desktop {
+  width: 100%;
+}
+.margin-nav {
+  margin-top: 85px;
+}
+/* .position-abs-dawj {
+  position: fixed;
+  width: 480px;
+  margin: auto;
+} */
+.btn-orange {
+  padding: 15px 40px;
+  margin-top: 50px;
+}
+.btn-orange {
+  border-radius: 10px;
+  background: var(--orange);
+  color: var(--white);
+  padding: 4px 20px;
+}
+.btn-orange:hover {
+  background: var(--abu-abu);
+  color: var(--white);
+}
+.btn-layanan {
+  padding: 15px 40px;
+}
+.btn-layanan {
+  border-radius: 10px;
+  background: var(--gold-black);
+  color: var(--white);
+  padding: 7px 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.btn-layanan:hover {
+  background: var(--abu-abu);
+  color: var(--white);
+}
+.Toastify__toast {
+  background: var(--bg-color2) !important;
+  color: var(--font-color1) !important;
+}
+.pac-container {
+  z-index: 10000 !important;
+}
+.kdjn-dkwd {
+  position: absolute;
+  z-index: 10000000;
+  top: 25px;
+  left: 25px;
+
+  max-width: 480px;
+}
+.jdawdi-dawda {
+  z-index: 1001;
+}
+.flexcol{
+  display: flex;
+  flex-direction: column;
+  margin: 65px 12px 24px 12px;
+  font-weight: 600;
+}
+.flexcol .flexbox{
+  background-color: #F1F3F6;
+  border-radius: 6px;
+  padding: 6px 12px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}

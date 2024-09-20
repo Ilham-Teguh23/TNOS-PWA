@@ -1,0 +1,23 @@
+/* captcha.css */
+
+/* Custom styles for the captcha container */
+.custom-captcha-container {
+  /* Add your styles here */
+  width: 100%;
+}
+
+/* Custom styles for the captcha input field */
+.custom-captcha-input {
+  /* Add your styles here */
+}
+
+/* Custom styles for the captcha refresh button */
+.custom-captcha-refresh {
+  /* Add your styles here */
+  color: green !important;
+}
+
+/* Custom styles for the captcha image */
+.custom-captcha-image {
+  /* Add your styles here */
+}

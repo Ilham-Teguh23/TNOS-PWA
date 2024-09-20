@@ -1,0 +1,27 @@
+.card-pengacara-menu {
+  position: relative;
+  padding: 15px;
+}
+.img-card-menu {
+  width: 100%;
+  max-height: 250px;
+}
+.kadjl {
+  position: absolute;
+  left: 50px;
+  bottom: 40px;
+  width: 177px;
+  background: #00000094;
+  padding: 8px;
+  border-radius: 15px;
+  color: var(--emas-gelap);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.tiekad {
+  margin: 0;
+  color: var(--emas-gelap);
+  font-size: 15px;
+  font-weight: 600;
+}

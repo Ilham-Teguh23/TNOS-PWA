@@ -1,0 +1,19 @@
+.d-flex-hag {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 7px 0px;
+}
+.icon-kdfna {
+  margin-right: 15px;
+  font-size: 20px;
+}
+.detail-layanan-dajwdc {
+  width: 100%;
+  padding: 10px 0px;
+  border-bottom: 1px solid #959595;
+  font-size: 14px;
+}
+.card-status-order-ajd {
+  font-size: 14px;
+}

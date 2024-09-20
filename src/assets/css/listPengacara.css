@@ -1,0 +1,72 @@
+.title-kasnadkw {
+  font-size: 16px;
+  margin-bottom: 0;
+  font-weight: 700;
+  text-align: left;
+}
+.hhagwd {
+  margin-right: 5px;
+}
+.kdowdk {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.njwdjhwk {
+  padding: 70px 20px 50px 20px;
+  position: relative;
+}
+.btn-kladml {
+  background: transparent;
+  border: 1px solid #ced4da;
+  width: 10%;
+}
+.nbjdawj {
+  max-width: 320px;
+  margin: auto;
+}
+
+.list-pengacara-kdoadmw {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.img-wea {
+  position: relative;
+  margin-right: 20px;
+}
+.no-urut-dadjw {
+  position: absolute;
+  top: -12px;
+  left: 60px;
+  color: #fff;
+  font-size: 15px;
+  background: #606060;
+  padding: 5px 10px;
+  border-radius: 27px;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  text-align: center;
+}
+.name-kadnn {
+  font-size: 16px;
+  margin: 0;
+}
+.pjdwj {
+  font-size: 12px;
+  color: #33b108;
+}
+.njndajh {
+  font-size: 12px;
+  font-weight: 600;
+  color: #33b108;
+}
+.span-jdwk {
+  font-size: 10px;
+  background: #33b108;
+  color: #ffff;
+  padding: 2px 4px;
+  border-radius: 14px;
+  cursor: pointer;
+}

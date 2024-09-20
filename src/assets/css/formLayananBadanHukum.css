@@ -1,0 +1,21 @@
+.card-syarat-ketentuan-jjs {
+  padding: 10px;
+  border: 2px solid #f5f5f5;
+  border-radius: 20px;
+  text-align: justify;
+  font-size: 13px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+  /* max-height: 432px; */
+}
+.show-ketentuan-jsd {
+  max-height: 456px;
+  transition: all 0.3s ease-in;
+}
+.hide-ketentuan-ssdbb {
+  display: none;
+}
+.btn-position-sjs {
+  text-align: right;
+}

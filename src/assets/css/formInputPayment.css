@@ -1,0 +1,98 @@
+.input-select-custom:focus {
+  border: 1px solid #4573ff;
+}
+.input-select-custom::placeholder {
+  color: var(--border-color1);
+}
+.input-select-custom {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  outline: none;
+  border: 1px solid var(--border-color1);
+  border-radius: 4px;
+  color: var(--font-color1);
+}
+.form-payment:focus {
+  border: 1px solid #4573ff;
+}
+.form-check-f {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.form-check-f label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--font-color1);
+}
+.form-checkbox {
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  outline: none;
+  border: 1px solid var(--border-color1);
+  border-radius: 4px;
+  color: var(--font-color1);
+  height: 20px;
+  width: 20px;
+}
+.form-payment {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  outline: none;
+  border: 1px solid var(--border-color1);
+  border-radius: 4px;
+  color: var(--font-color1);
+}
+.input-label-payment {
+  font-size: 13px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  color: var(--font-color1);
+  /* margin-bottom: 7px; */
+}
+
+.text-error {
+  font-size: 13px;
+  font-weight: 400;
+  color: #ff2a25;
+}
+
+.outside-container-button-f {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  background: #cdcdcd;
+}
+.container-button-f {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  background: var(--bg-color1);
+  max-width: 480px;
+  margin: auto;
+  box-shadow: 0px -3px 4px -3px #e0e0e0;
+}
+.btn-custom {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  font-weight: 400;
+  background: var(--bg-color3);
+  color: #ffff;
+  outline: none;
+  border: 1px solid var(--bg-color3);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.btn-custom:disabled {
+  opacity: 0.6;
+}
+.btn-custom:hover {
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}

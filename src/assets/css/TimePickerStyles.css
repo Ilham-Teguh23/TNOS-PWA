@@ -1,0 +1,25 @@
+.react-time-picker {
+  width: 100%;
+}
+.react-time-picker__wrapper {
+  /* Custom styles for the TimePicker wrapper */
+  padding: 0.35rem;
+  width: 100% !important;
+  border: 1px solid var(--border-color1) !important;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--font-color1);
+}
+
+.react-time-picker__inputGroup {
+  /* Custom styles for the TimePicker input group */
+  /* width: 100%; */
+}
+
+.react-time-picker__inputGroup__input {
+  /* Custom styles for the TimePicker input field */
+  /* width: 100%; */
+}
+/* .react-time-picker__inputGroup__input {
+  width: 100%;
+} */

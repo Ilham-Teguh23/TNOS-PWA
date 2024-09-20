@@ -1,0 +1,50 @@
+.pesan-hdwh {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-height: 135px;
+  border-bottom: 1px solid rgb(189, 189, 189);
+}
+.img-message-kks {
+  max-width: 75px;
+}
+.title-pesan-hhada {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.p-pesan-hhada {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.datetime-pesan-kdw {
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  bottom: -15px;
+}
+
+.unread {
+  opacity: 0.4;
+}
+/* .pesan-hdwh {
+  position: relative;
+  cursor: pointer;
+}
+.title-pesan-hhada {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+.p-pesan-hhada {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+.datetime-pesan-kdw {
+  font-size: 12px;
+  float: right;
+}
+.read {
+  opacity: 0.3;
+} */

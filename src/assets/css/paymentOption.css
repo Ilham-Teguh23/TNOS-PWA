@@ -1,0 +1,29 @@
+.payment {
+  background: #22749c;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px 8px;
+  color: #ffff;
+}
+.payment-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bcbcbc;
+  padding: 0.7rem;
+}
+.payment-icon img {
+  max-width: 80px;
+  height: 30px;
+  width: 100%;
+}
+.box-option-f {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box-option-f .title {
+  font-size: 15px;
+  line-height: 20px;
+  color: #010101;
+}

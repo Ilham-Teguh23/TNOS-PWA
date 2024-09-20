@@ -1,0 +1,31 @@
+/* DatePickerStyles.css */
+
+.react-datepicker-wrapper {
+  /* Custom styles for the DatePicker wrapper */
+}
+
+.react-datepicker__input-container {
+  /* Custom styles for the DatePicker input container */
+  /* border: 1px solid #4573ff !important; */
+}
+
+.react-datepicker__input-container input {
+  /* Custom styles for the DatePicker input field */
+  padding: 0.5rem;
+  width: 100%;
+  border: 1px solid var(--border-color1) !important;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--font-color1);
+}
+.react-datepicker__input-container input:focus {
+  /* Custom styles for the DatePicker input field */
+  border: 1px solid #4573ff !important;
+  outline: none;
+}
+
+.react-datepicker__day--highlighted {
+  /* Custom styles for highlighted days */
+}
+
+/* Add more custom styles as needed */

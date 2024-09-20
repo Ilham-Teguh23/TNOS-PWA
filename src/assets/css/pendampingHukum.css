@@ -1,0 +1,10 @@
+.p-sebagai-dwdn {
+  padding: 4px 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 20px;
+  outline: 0;
+}
+/* .p-sebagai-dwdn ::selection {
+  background: var(--orange);
+  color: var(--white);
+} */

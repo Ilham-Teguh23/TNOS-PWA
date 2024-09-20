@@ -1,0 +1,29 @@
+.footer-menu {
+  background: #e9e9e9;
+  margin-bottom: 70px;
+}
+.title-footer {
+  font-size: 17px;
+  font-weight: 600;
+}
+.p-footer {
+  font-size: 14px;
+}
+.menu-sosmed {
+  font-size: 30px;
+  text-decoration: none;
+  color: var(--gold-black);
+  transition: all 0.3s ease-in-out;
+}
+.menu-sosmed:hover {
+  color: var(--abu-abu);
+}
+.menu-footer {
+  text-decoration: none;
+  color: var(--black);
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+}
+.menu-footer:hover {
+  color: var(--abu-abu);
+}

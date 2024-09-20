@@ -1,0 +1,61 @@
+.content-box-login {
+  padding: 15px;
+}
+.content-box-login .form-top-login {
+  position: relative;
+}
+.content-box-login .form-top-login .times-otp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 35px;
+  right: 9px;
+  font-size: 13px;
+}
+.content-box-login .form-top-login .times-otp svg {
+  color: red;
+  margin-right: 30px;
+  margin-top: 1px;
+  font-size: 13px;
+}
+.content-box-login h5.title-login {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 700;
+}
+.content-box-login p.p-login {
+  font-size: 15px;
+}
+.content-box-login label {
+  margin: 0;
+}
+.content-box-login .otp {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  letter-spacing: 25px;
+}
+.content-box-login button.btn.btn-submit-login {
+  margin-top: 20px;
+  background: var(--orange);
+  color: var(--white);
+  padding: 6px 30px;
+  font-size: 18px;
+  border-radius: 6px;
+}
+.content-box-login button.btn.btn-submit-login:hover {
+  background: var(--abu-abu);
+  color: var(--white);
+}
+.dd-dw {
+  background: white;
+  border: none;
+  font-size: 13px;
+  text-decoration: underline;
+  color: var(--abu-abu);
+}
+.dd-dw:hover {
+  color: var(--orange);
+}

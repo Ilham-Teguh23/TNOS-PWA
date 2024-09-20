@@ -1,0 +1,19 @@
+.slick-dots li.slick-active button:before {
+  opacity: 0.75;
+  color: var(--gold-black) !important;
+}
+/* .slick-dots li button:before {
+  color: var(rgba(252, 209, 90, 0));
+} */
+.slick-dots li button {
+  color: var(--gold-black);
+}
+.slick-dots li button:hover {
+  color: var(--gold-black);
+}
+.slick-dots li button:focus {
+  color: var(--gold-black);
+}
+.slick-dots li button:active {
+  color: var(--gold-black);
+}

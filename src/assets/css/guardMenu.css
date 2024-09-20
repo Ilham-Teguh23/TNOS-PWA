@@ -1,0 +1,264 @@
+.box-maps-andk {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  transition: all 0.3s ease-in-out;
+}
+.box-maps-andk.full-size {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 85px;
+}
+.map-style-dadjdwkl {
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 10%);
+}
+.map-style-dadjdwkl.full-size {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 10%);
+}
+.position-btn-full-size-sj {
+  position: absolute;
+  z-index: 3;
+  bottom: -35px;
+}
+.btn-full-size-menu-sj {
+  background: var(--white);
+  border: 1px solid #cdcdcd;
+  padding: 5px 10px;
+  color: var(--orange);
+  border-radius: 24px;
+}
+.p-dadj {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.search-destination-ajd {
+  background: var(--white);
+  width: 280px;
+  margin: auto;
+}
+.group-jkan {
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+}
+.klda {
+  padding-left: 30px;
+  height: 30px;
+}
+.box-content-guard-menu-adn {
+  padding: 15px;
+  margin-bottom: 70px;
+}
+.box-content-guard-menu-adn.hide {
+  padding: 0px;
+  margin-bottom: 0;
+}
+.box-show-hide-sj {
+  overflow: auto;
+  height: auto;
+  transition: all 0.3s ease-out;
+  margin-bottom: 20px;
+}
+.box-show-hide-sj.hide {
+  overflow: auto;
+  height: 0;
+  transition: all 0.3s ease-out;
+}
+.detail-location-jsan {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 20px;
+}
+.title-detail-sj {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+.p-detail-lokasi-sj {
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+.title-pilih-layanan-sj {
+  font-size: 15px;
+  font-weight: 700;
+}
+.btn-layanan-guard-sj {
+  background: #f5f5f5;
+  color: var(--black);
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 18px;
+}
+.btn-layanan-guard-sj.active {
+  background: var(--orange);
+  color: white;
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  border-radius: 18px;
+}
+.btn-layanan-guard-sj:active {
+  background: var(--orange);
+  color: white;
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  border-radius: 18px;
+}
+.btn-layanan-guard-sj:focus {
+  background: var(--orange);
+  color: white;
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  border-radius: 18px;
+}
+.btn-layanan-guard-sj:hover {
+  background: #f5f5f5;
+  color: var(--black);
+  border: 1px solid var(--black);
+  padding: 7px 15px;
+  font-size: 16px;
+  border-radius: 18px;
+}
+.title-jam-bertugas-sj {
+  font-size: 15px;
+  font-weight: 700;
+}
+.btn-jam-bertugas-sj {
+  background: #f5f5f5;
+  color: var(--black);
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 18px;
+  border-radius: 18px;
+}
+.btn-jam-bertugas-sj.active {
+  background: var(--orange);
+  color: white;
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  border-radius: 18px;
+}
+.btn-jam-bertugas-sj:active {
+  background: var(--orange);
+  color: white;
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  border-radius: 18px;
+}
+
+.btn-jam-bertugas-sj:focus {
+  background: var(--orange);
+  color: white;
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  border-radius: 18px;
+}
+.btn-jam-bertugas-sj:hover {
+  background: #f5f5f5;
+  color: var(--black);
+  border: 1px solid var(--black);
+  padding: 7px 15px;
+  font-size: 16px;
+  border-radius: 18px;
+}
+.title-durasi-bertugas-sj {
+  font-size: 15px;
+  font-weight: 700;
+}
+.btn-title-durasi-ska {
+  background: var(--orange);
+  color: var(--white);
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 18px;
+}
+.btn-min-durasi-bertugas {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  font-size: 12px;
+}
+.btn-plus-durasi-bertugas {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  font-size: 12px;
+}
+.btn-submit-form-guard-menu {
+  background: var(--orange);
+  color: var(--white);
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 15px;
+}
+.btn-submit {
+  width: 300px;
+  margin: auto;
+}
+.btn-submit-form-guard-menu {
+  background: var(--orange);
+  color: var(--white);
+  border: 1px solid transparent;
+  padding: 7px 20px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-submit-form-guard-menu:hover {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+.btn-submit-form-guard-menu:active {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+.btn-submit-form-guard-menu:focus {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+.icon-tn-submit-form-l {
+  margin-right: 15px;
+}
+.icon-tn-submit-form-r {
+  margin-left: 15px;
+}
+.kdaj.ksukaan {
+  margin: 0;
+  margin-top: 10px;
+}

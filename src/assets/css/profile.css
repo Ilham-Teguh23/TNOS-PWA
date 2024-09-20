@@ -1,0 +1,19 @@
+.content-profile-dad {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #c8c9ca;
+  padding: 15px 7px;
+  cursor: pointer;
+}
+.content-profile-dad:hover {
+  background: #f9f9f9;
+  transition: all 0.3s ease;
+}
+.icon-skdw {
+  margin-right: 10px;
+  font-size: 18px;
+  color: var(--gold-black);
+}
+.name-menu-dajad {
+  font-size: 16px;
+}

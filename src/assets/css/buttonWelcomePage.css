@@ -1,0 +1,47 @@
+.button-welcome-page {
+  padding: 15px 40px;
+  margin-top: 50px;
+}
+.button-welcome-page a.btn.btn-masuk {
+  border-radius: 15px;
+  background: var(--orange);
+  color: var(--white);
+  padding: 4px 20px;
+}
+.button-welcome-page a.btn.btn-masuk:hover {
+  background: var(--abu-abu);
+  color: var(--white);
+}
+.button-welcome-page a.btn.btn-daftar {
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--gold-black);
+  border: 1px solid var(--gold-black);
+  padding: 4px 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.button-welcome-page a.btn.btn-login {
+  border-radius: 10px;
+  background: var(--gold-black);
+  color: var(--white);
+  border: 1px solid var(--gold-black);
+  padding: 4px 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.button-welcome-page a.btn.btn-login:hover {
+  background: var(--abu-abu);
+  color: var(--white);
+  border: 1px solid var(--abu-abu);
+}
+
+.button-welcome-page a.btn.btn-daftar:hover {
+  border: 1px solid var(--abu-abu);
+  color: var(--abu-abu);
+}
+.button-welcome-page .p-button-welcoma-page {
+  margin-top: 5px;
+  font-size: 13px;
+}

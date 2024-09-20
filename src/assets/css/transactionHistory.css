@@ -1,0 +1,106 @@
+.filter-jdawjd {
+  border: 1px solid #c8c9ca;
+  padding: 4px 4px;
+  border-radius: 20px;
+  outline: 0px;
+  font-size: 12px;
+}
+
+.filter-jdawjd:active {
+  border: 1px solid #c8c9ca;
+}
+.filter-jdawjd:hover {
+  border: 1px solid #c8c9ca;
+}
+.filter-jdawjd {
+  margin-right: 20px;
+}
+.title-wdnwj {
+  font-size: 16px;
+  font-weight: 600;
+}
+.img-ndadnaj {
+  width: 75px;
+  margin-right: 10px;
+}
+.ndawdj {
+  font-size: 14px;
+  font-weight: 400;
+}
+.dwdwa-faf {
+  font-size: 14px;
+  font-weight: 600;
+}
+.harga-dwjdjw {
+  font-size: 14px;
+}
+.gems-dwd {
+  font-size: 14px;
+  align-items: center;
+}
+.img-dvdwh {
+  width: 20px;
+  height: 10px;
+}
+.dawd {
+  border-bottom: 1px solid #c8c9ca;
+  cursor: pointer;
+}
+.dawd:hover {
+  background: #f9f9f9;
+  transition: all 0.3s ease;
+}
+.kkn-sf {
+  font-size: 12px;
+  /* padding: 3px; */
+  border-radius: 10px;
+  cursor: pointer;
+}
+.klik {
+  font-size: 13px;
+}
+.klik:hover {
+  opacity: 0.3;
+}
+.btn-dwajdj {
+  padding: 10px 20px;
+  background: var(--orange);
+  color: var(--white);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px transparent;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+.btn-dwajdj:hover {
+  transition: all 0.3s ease-in-out;
+  letter-spacing: 1px;
+}
+.bayar {
+  background: #3b30d4;
+}
+.paid {
+  background: var(--green-black);
+}
+.layanan {
+  background: var(--gold-black);
+}
+.jdawdi {
+  position: fixed;
+  bottom: 0px;
+  width: 480px;
+}
+.jdawdi-dawda {
+  position: fixed;
+  margin: auto;
+  bottom: 0px;
+  width: 440px;
+}
+.jdawdi-dawda-dadawd {
+  position: fixed;
+  margin: auto;
+  bottom: 0px;
+  width: 480px;
+}
