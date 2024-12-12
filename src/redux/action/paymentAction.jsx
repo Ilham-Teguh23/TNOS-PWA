@@ -591,10 +591,9 @@ const pageOthersCreate =
         },
       })
       .then((response) => {
-        console.log(response);
         
-        // dispatch(setLoading(false));
-        // navigate(`${urlNavigate}${response?.data?.detail?.id}`);
+        dispatch(setLoading(false));
+        navigate(`${urlNavigate}${response?.data?.detail?.id}`);
       })
       .catch((error) => {
         console.log(error);
@@ -608,12 +607,15 @@ const badanHukumList = async (id) => (dispatch) => {
   axios
     .get(`${API_HOST.url}/badan-hukum/get-detail-order/${id}`)
     .then((response) => {
-      dispatch(setDetail_data_layanan(response.data.detail));
-      dispatch(setLoading(false));
-      // navigate(`/payment/${response?.data?.payment?.id}`);
+      if (response.data.type === "others") {
+        dispatch(setDetail_data_layanan(response.data));
+        dispatch(setLoading(false))
+      } else {
+        dispatch(setDetail_data_layanan(response.data));
+        dispatch(setLoading(false))
+      }
     })
     .catch((error) => {
-      // console.log(error);
       showMessage(error?.response?.data?.message, "error");
       dispatch(setLoading(false));
     });
@@ -640,6 +642,7 @@ const paymentBadanHukum = async (data) => (dispatch) => {
   axios
     .post(`${API_HOST.url}/badan-hukum/in-payment`, data)
     .then((response) => {
+      
       // console.log("Invoide : " + invoiceId);
       // console.log("Amount :" + amount);
       // console.log(invoiceId);
@@ -718,6 +721,9 @@ const paymentPwan =
       .post(`${API_HOST.url}/order-new-history`, finalData)
       .then((response) => {
 
+        // console.log("response");
+        // console.log(response);
+        
         dispatch(setLoading(false));
 
         navigate(`/corporate-security/section/checkout/${response?.data?.data?.order?.id}`)
@@ -742,10 +748,43 @@ const paymentPwan =
       });
   };
 
+const paymentPwanMobile =
+  async (finalData, navigate, urlNavigate) => (dispatch) => {
+
+    dispatch(setLoading(true));
+    axios
+      .post(`${API_HOST.url}/order-new-history`, finalData)
+      .then((response) => {
+
+        dispatch(setLoading(false));
+
+        navigate(`/corporate-security-m/section/checkout/${response?.data?.data?.order?.id}?query=${finalData?.params}`)
+        // if (values.params) {
+        //   if (values.user_id != 9999999999) {
+        //     navigate(
+        //       `/corporate-security-m/checkout/${response?.data?.detail?.id}?query=${values.params}`
+        //     );
+        //   } else {
+        //     navigate(`/corporate-security-m/authfailed`);
+        //   }
+        // } else {
+        //   navigate(
+        //     `/corporate-security/checkout/${response?.data?.detail?.id}`
+        //   );
+        // }
+      })
+      .catch((error) => {
+        console.log(error);
+        showMessage(error?.response?.data?.message, "error");
+        dispatch(setLoading(false));
+      });
+  };
+
 const paymentPWANRingkasan = async (data) => (dispatch) => {
   axios
-    .post(`${API_HOST.url}/dashboard/pwa-revamp/history/${data.order_id}`)
+    .post(`${API_HOST.url}/dashboard/pwa-revamp/history/${data?.order_id}/${data?.harga_akhir}`)
     .then((response) => {
+
       window.location = `${process.env.REACT_APP_API_INVOICE_URL}${response?.data?.data?.invoice_id}`;
 
     }).catch((error) => {
@@ -786,5 +825,6 @@ export {
   pageOthersList,
   paymentPageOthers,
   paymentPwan,
+  paymentPwanMobile,
   paymentPWANRingkasan
 };

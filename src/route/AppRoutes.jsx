@@ -144,7 +144,7 @@ import DetailBadanPerkumpulanMobile from "../components/more/badan-hukum-mobile/
 import BadanLainnyaMobile from "../components/more/badan-hukum-mobile/BadanLainnyaMobile";
 import DetailBadanLainnyaMobile from "../components/more/badan-hukum-mobile/DetailBadanLainnyaMobile";
 import DetailTransaksiMobile from "../components/more/riwayat-mobile/DetailTransaksiMobile";
-import ListPengamananProvider from "../components/more/pengamanan/LIstPengmananProvider.jsx";
+import ListPengamananProvider from "../components/more/pengamanan/ListPengamananProvider.jsx";
 import ListPengamananProviderMobile from "../components/more/pengamanan/ListPengamananProviderMobile.jsx";
 import ListLayanan from "../components/dashboard/ListLayanan.jsx";
 import ListLayananParams from "../components/dashboard/ListLayananParams.jsx";
@@ -157,6 +157,7 @@ import DetailPengamananKorporatMobileD from "../components/more/pengamanan/Detai
 import BlankPage from "../components/more/pengamanan/BlankPage.jsx";
 import PaymentBonn from "../components/payment/PaymentBonn.jsx";
 import RingkasanSection from "../components/more/pengamanan/RingkasanSection.jsx";
+import RingkasanSectionMobile from "../components/more/pengamanan/RingkasanSectionMobile.jsx";
 
 //Context
 
@@ -512,7 +513,7 @@ function AppRoutes() {
       />
 
       <Route
-        path="/corporate-security/section/:mitra"
+        path="/corporate-security/section/:mitra/:durasi"
         element={
           <ProtectedRoute>
             <Section />
@@ -521,11 +522,11 @@ function AppRoutes() {
       />
 
       <Route
-        path="/corporate-security-m/section/:mitra"
+        path="/corporate-security-m/section/:mitra/:durasi"
         element={
-          <ProtectedRoute>
+          // <ProtectedRoute>
             <SectionMobile />
-          </ProtectedRoute>
+          // </ProtectedRoute>
         }
       />
 
@@ -535,6 +536,15 @@ function AppRoutes() {
           <ProtectedRoute>
             <RingkasanSection />
           </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/corporate-security-m/section/checkout/:id"
+        element={
+          // <ProtectedRoute>
+            <RingkasanSectionMobile />
+          // </ProtectedRoute>
         }
       />
 
@@ -602,9 +612,9 @@ function AppRoutes() {
       <Route
         path="/services-list-m/layanan/:mitra"
         element={
-          <ProtectedRoute>
+          // <ProtectedRoute>
             <ListLayananParamsMobile />
-          </ProtectedRoute>
+          // </ProtectedRoute>
         }
       />
 
@@ -637,6 +647,7 @@ function AppRoutes() {
           <ListPengamananProviderMobile />
         }
       />
+
       <Route
         path="/pengamanan-korporat-m/checkout/:id"
         element={

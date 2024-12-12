@@ -32,7 +32,7 @@ const getNameLayanan = (tnos_service_id, tnos_subservice_id) => {
   } else if (tnos_service_id === "5" && tnos_subservice_id === "1") {
     name = t("partner2");
   } else if (tnos_service_id === "6" && tnos_subservice_id === "1") {
-    name = "PWAN"
+    name = "P1 Force"
   } else {
     name = "tidak ada";
   }

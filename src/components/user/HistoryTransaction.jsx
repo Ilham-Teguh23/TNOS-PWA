@@ -88,7 +88,7 @@ function HistoryTransaction() {
               hari = "Jumat";
               break;
             case "Saturday":
-              hari = "Saptu";
+              hari = "Sabtu";
               break;
             case "Sunday":
               hari = "Minggu";

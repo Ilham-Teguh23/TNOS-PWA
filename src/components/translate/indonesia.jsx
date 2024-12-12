@@ -31,7 +31,7 @@ const indonesia = {
   hari3: "Rabu",
   hari4: "Kamis",
   hari5: "Jumat",
-  hari6: "Saptu",
+  hari6: "Sabtu",
   hari7: "Minggu",
 
   // nama-nama bulan //

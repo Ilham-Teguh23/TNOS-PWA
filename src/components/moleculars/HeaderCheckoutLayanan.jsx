@@ -13,7 +13,7 @@ function HeaderCheckoutLayanan({ layanan, payment_status }) {
           <ContentTitleValue
             type="waiting"
             title="Status Order:"
-            value="Menunggu"
+            value="Membuat Pesanan"
           />
         );
       case "002":
@@ -108,9 +108,6 @@ function HeaderCheckoutLayanan({ layanan, payment_status }) {
       />
       <div className="content-detail">
         <div className="title-f">{layanan}</div>
-        <div className="info-s">
-          <div className="title">Ada</div>
-        </div>
         {renderStatusOrder()}
       </div>
     </div>

@@ -15,6 +15,7 @@ import { paymentPWANRingkasan } from "../../../redux/action/paymentAction";
 import ContentDetailCheckoutP1 from "../../moleculars/ContentDetailCheckoutP1";
 import PAS from "../../../assets/images/PAS.svg"
 import ContentTitleValue from "../../moleculars/ContentTitleValue";
+import P1 from "../../../assets/images/P1-NEW.png"
 
 function RingkasanSection() {
     TitleHeader("Halaman rincian")
@@ -23,13 +24,28 @@ function RingkasanSection() {
     const pathParts = location.pathname.split("/")
     const id = pathParts[pathParts.length - 1]
     const [getDetail, setDetail] = useState([])
+    const [totalAkhirPayment, setTotalAkhirPayment] = useState(0)
 
     const getData = async () => {
         await axios.get(
             `${process.env.REACT_APP_API_PWA}/dashboard/pwa-revamp/history/${id}`
         ).then((response) => {
 
+            console.log("Detail");
+            console.log(response?.data?.data?.durasi?.id);
+            
             setDetail(response?.data?.data)
+
+            const updatedComponents = response?.data?.data?.resultsTM?.map(item => ({
+                ...item,
+                harga_akhir: item.harga_akhir,
+            }));
+
+            const totalHargaAkhir = updatedComponents.reduce((total, item) => {
+                return total + (item.harga_akhir || 0);
+            }, 0);
+
+            setTotalAkhirPayment(totalHargaAkhir)
 
         }).catch((error) => {
             console.log(error);
@@ -40,6 +56,7 @@ function RingkasanSection() {
         enableReinitialize: true,
         initialValues: {
             order_id: id,
+            harga_akhir: getDetail?.detail?.order_total + totalAkhirPayment
         },
         onSubmit: async (values) => {
             dispatch(await paymentPWANRingkasan(values));
@@ -187,8 +204,8 @@ function RingkasanSection() {
     return (
         <>
             <TopNewNav
-                title={t("Ringkasan Pengamanan Usaha dan Bisnis")}
-                path={`/services-list/`}
+                title={t(`Ringkasan ${getDetail?.layanan} ${getDetail?.detail?.durasi_pengamanan} Jam`)}
+                path={`/corporate-security/section/${getDetail?.history?.id_layanan}/${getDetail?.durasi?.id}`}
             />
             <div className="container-class">
                 <div className="responsive-class">
@@ -202,15 +219,16 @@ function RingkasanSection() {
                                     <>
                                         <div className="detail-riwayat-container">
                                             <img
-                                                src={PAS}
-                                                alt="not internet connection"
+                                                src={getDetail?.image}
+                                                alt={getDetail?.provider}
+                                                style={{width: '60px'}}
                                             />
                                             <div className="content-detail">
                                                 <div className="title-f">
-                                                    {getDetail?.provider?.name_sc}
+                                                    {getDetail?.provider}
                                                 </div>
                                                 <div className="info-s">
-                                                    <div className="title">{getDetail?.layanan?.name}</div>
+                                                    <div className="title">{getDetail?.layanan} {getDetail?.detail?.durasi_pengamanan} Jam</div>
                                                 </div>
                                                 {renderStatusOrder(getDetail?.detail?.payment_status)}
                                             </div>

@@ -83,9 +83,6 @@ function ContentDetailCheckout({ layanan, data }) {
 
   alamat = isJson ? JSON.parse(address) : address;
 
-  // const alamat = data?.alamat_badan_hukum
-  //   ? JSON.parse(data?.alamat_badan_hukum)
-  //   : "";
   const saham = data?.pemegang_saham ? JSON.parse(data?.pemegang_saham) : "";
   const saham_c =
     saham &&

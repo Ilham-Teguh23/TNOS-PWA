@@ -67,7 +67,7 @@
   "day3": "Rabu",
   "day4": "Kamis",
   "day5": "Jumat",
-  "day6": "Saptu",
+  "day6": "Sabtu",
   "day7": "Minggu",
 
   "menu1": "Beranda",
@@ -83,6 +83,7 @@
   "guard5": "Jumlah Pengaman",
   "guard6": "Rincian Lokasi",
   "guard7": "Lanjutkan Pembayaran",
+  "guard8": "Jumlah Hari",
 
   "partner1": "PAS",
   "partner2": "TRIGER",

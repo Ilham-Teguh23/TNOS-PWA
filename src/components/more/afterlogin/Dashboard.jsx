@@ -32,8 +32,6 @@ function Dashboard() {
   const encrypt = CryptoJS.AES.encrypt(jsonData, "Ach2o1&invVocS%*n25F*cQhash209").toString()
   const encrypData = btoa(encrypt)
 
-  console.log(encrypData);
-
   return (
     <>
       <TopNewNav

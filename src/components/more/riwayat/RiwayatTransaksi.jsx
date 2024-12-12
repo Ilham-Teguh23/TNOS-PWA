@@ -20,6 +20,7 @@ import Select from "react-select";
 import NoTransactionComponent from "../../moleculars/NoTransactionComponent";
 import { useTranslation } from "react-i18next";
 import { icon } from "../../utils/IconLayananService";
+import P1 from "../../../assets/images/P1-NEW.png"
 
 function RiwayatTransaksi() {
   TitleHeader("Halaman riwayat");
@@ -57,8 +58,8 @@ function RiwayatTransaksi() {
       renderData = !layananId
         ? list_history_by_user &&
           list_history_by_user?.map((row, key) => {
-            const width = row?.tnos_service_id == 3 && row?.tnos_subservice_id == 8 ? { width: '55px' } : {width: ''};
-           
+            const width = (row?.tnos_service_id === "3" && row?.tnos_subservice_id === "8") || (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "1") ? { width: '55px' } : {width: ''};
+          
             return (
               <div
                 key={key}
@@ -66,7 +67,7 @@ function RiwayatTransaksi() {
                 onClick={() => navigate(`/history/${row?.id}`)}
               >
                 <img
-                  src={icon(
+                  src={row?.tnos_service_id === "6" && row?.tnos_subservice_id === "1" ? P1 : icon(
                     getNameLayanan(
                       row?.tnos_service_id,
                       row?.tnos_subservice_id

@@ -45,13 +45,13 @@ function DetailSolusiHukumMobile() {
   });
 
   const renderButton = () => {
-    if (detail_data_layanan?.payment_status === "ORDER") {
+    if (detail_data_layanan?.detail?.payment_status === "ORDER") {
       return (
         <ButtonComponent
           others={
             <CheckoutValue
               title="Total Pembayaran"
-              value={detail_data_layanan?.order_total}
+              value={detail_data_layanan?.detail?.order_total}
               color="var(--font-color10)"
               number={true}
             />
@@ -60,13 +60,13 @@ function DetailSolusiHukumMobile() {
           type="submit"
         />
       );
-    } else if (detail_data_layanan?.payment_status === "UNPAID") {
+    } else if (detail_data_layanan?.detail?.payment_status === "UNPAID") {
       return (
         <ButtonComponent
           others={
             <CheckoutValue
               title="Total Pembayaran"
-              value={detail_data_layanan?.order_total}
+              value={detail_data_layanan?.detail?.order_total}
               color="var(--font-color10)"
               number={true}
             />
@@ -77,17 +77,17 @@ function DetailSolusiHukumMobile() {
           title="Klik untuk membayar"
           type="button"
           onClick={() =>
-            (window.location = `${process.env.REACT_APP_API_INVOICE_URL}${detail_data_layanan?.invoice_id}`)
+            (window.location = `${process.env.REACT_APP_API_INVOICE_URL}${detail_data_layanan?.detail?.invoice_id}`)
           }
         />
       );
-    } else if (detail_data_layanan?.payment_status === "EXPIRED") {
+    } else if (detail_data_layanan?.detail?.payment_status === "EXPIRED") {
       return (
         <ButtonComponent
           others={
             <CheckoutValue
               title="Total Pembayaran"
-              value={detail_data_layanan?.order_total}
+              value={detail_data_layanan?.detail?.order_total}
               color="var(--font-color10)"
               number={true}
             />
@@ -106,7 +106,7 @@ function DetailSolusiHukumMobile() {
           others={
             <CheckoutValue
               title="Total Pembayaran"
-              value={detail_data_layanan?.order_total}
+              value={detail_data_layanan?.detail?.order_total}
               color="var(--font-color10)"
               number={true}
             />
@@ -143,18 +143,18 @@ function DetailSolusiHukumMobile() {
               <PaddingPwa padding={15}>
                 <HeaderCheckoutLayanan
                   layanan={getNameLayanan(
-                    detail_data_layanan?.tnos_service_id,
-                    detail_data_layanan?.tnos_subservice_id
+                    detail_data_layanan?.detail?.tnos_service_id,
+                    detail_data_layanan?.detail?.tnos_subservice_id
                   )}
-                  payment_status={detail_data_layanan?.payment_status}
+                  payment_status={detail_data_layanan?.detail?.payment_status}
                 />
 
                 <ContentDetailCheckout
                   layanan={getNameLayanan(
-                    detail_data_layanan?.tnos_service_id,
-                    detail_data_layanan?.tnos_subservice_id
+                    detail_data_layanan?.detail?.tnos_service_id,
+                    detail_data_layanan?.detail?.tnos_subservice_id
                   )}
-                  data={detail_data_layanan}
+                  data={detail_data_layanan?.detail}
                 />
               </PaddingPwa>
               <Gap height={120} />

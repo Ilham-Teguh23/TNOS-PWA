@@ -61,9 +61,9 @@ function DetailSolusiHukum() {
   });
 
   const renderButton = () => {
-    if (detail_data_layanan?.payment_status === "ORDER") {
+    if (detail_data_layanan?.detail?.payment_status === "ORDER") {
       return <ButtonComponent title="Bayar Sekarang " type="submit" />;
-    } else if (detail_data_layanan?.payment_status === "UNPAID") {
+    } else if (detail_data_layanan?.detail?.payment_status === "UNPAID") {
       return (
         <ButtonComponent
           border="#fef5e8"
@@ -76,7 +76,7 @@ function DetailSolusiHukum() {
           }
         />
       );
-    } else if (detail_data_layanan?.payment_status === "EXPIRED") {
+    } else if (detail_data_layanan?.detail?.payment_status === "EXPIRED") {
       return (
         <ButtonComponent
           background="var(--font-color11)"
@@ -123,20 +123,20 @@ function DetailSolusiHukum() {
                 </p>
               </div> */}
               <PaddingPwa padding={15}>
-                <HeaderCheckoutLayanan
+              <HeaderCheckoutLayanan
                   layanan={getNameLayanan(
-                    detail_data_layanan?.tnos_service_id,
-                    detail_data_layanan?.tnos_subservice_id
+                    detail_data_layanan?.detail?.tnos_service_id,
+                    detail_data_layanan?.detail?.tnos_subservice_id
                   )}
-                  payment_status={detail_data_layanan?.payment_status}
+                  payment_status={detail_data_layanan?.detail?.payment_status}
                 />
 
                 <ContentDetailCheckout
                   layanan={getNameLayanan(
-                    detail_data_layanan?.tnos_service_id,
-                    detail_data_layanan?.tnos_subservice_id
+                    detail_data_layanan?.detail?.tnos_service_id,
+                    detail_data_layanan?.detail?.tnos_subservice_id
                   )}
-                  data={detail_data_layanan}
+                  data={detail_data_layanan?.detail}
                 />
               </PaddingPwa>
               <Gap height={80} />

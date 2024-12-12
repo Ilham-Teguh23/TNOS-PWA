@@ -29,7 +29,7 @@ const icon = (layanan) => {
       return TRIGER
     case t("layanan7"):
       return Lainnya
-    case "PWAN":
+    case "P1 Force":
       return PAS;
     default:
       return;
