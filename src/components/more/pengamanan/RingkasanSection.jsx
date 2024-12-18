@@ -31,9 +31,6 @@ function RingkasanSection() {
             `${process.env.REACT_APP_API_PWA}/dashboard/pwa-revamp/history/${id}`
         ).then((response) => {
 
-            console.log("Detail");
-            console.log(response?.data?.data?.durasi?.id);
-            
             setDetail(response?.data?.data)
 
             const updatedComponents = response?.data?.data?.resultsTM?.map(item => ({

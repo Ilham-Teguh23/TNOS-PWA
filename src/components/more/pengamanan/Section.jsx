@@ -39,7 +39,7 @@ function Section() {
     const [tanggal, setTanggal] = useState(
         searchParams?.mitra === "PAS"
             ? newDate.setDate(newDate.getDate())
-            : newDate.setDate(newDate.getDate() + 3)
+            : newDate.setDate(newDate.getDate())
     );
     const [time, setTime] = useState(moment().format("HH:mm"));
     const [jarak, setJarak] = useState(0);
@@ -842,7 +842,7 @@ function Section() {
                                                         tanggal={tanggal}
                                                         setTanggal={setTanggal}
                                                         style={{ padding: "0.6rem" }}
-                                                        minDateNumber={searchParams?.mitra === "PAS" ? 7 : 3}
+                                                        minDateNumber={searchParams?.mitra === "PAS" ? 7 : 0}
                                                     />
                                                     {err1?.iserr ? <TextError error={err1?.message} /> : ""}
                                                 </div>

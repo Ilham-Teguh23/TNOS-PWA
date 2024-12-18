@@ -88,10 +88,6 @@ function ContentDetailCheckoutP1({ layanan, data }) {
         if (layanan === "P1 Force") {
             const fetchPWAN = () => {
 
-                console.log("CONSOLE");
-                console.log(data?.history);
-                
-
                 const convert = JSON.parse(data?.history?.json_data)
                 setJsonData(convert)
 
@@ -154,7 +150,7 @@ function ContentDetailCheckoutP1({ layanan, data }) {
             color: 'var(--font-color4)'
         }
     }
-
+    
     const renderContent = () => {
         switch (layanan) {
             case "P1 Force":
@@ -193,6 +189,7 @@ function ContentDetailCheckoutP1({ layanan, data }) {
                             />
                             <CheckoutValue title="Jam Mulai" value={data?.detail?.jam_mulai} />
                             <CheckoutValue title="Durasi" value={`${data?.detail?.durasi_pengamanan} Jam`} />
+                            <CheckoutValue title="Jumlah Hari" value={`${data?.history?.hari} Hari`} />
                             {/* <CheckoutValue
                                 title="Jarak"
                                 value={`${data?.detail?.jarak} KM`}

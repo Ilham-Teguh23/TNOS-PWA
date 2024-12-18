@@ -59,7 +59,7 @@ function ContentDetailCheckout({ layanan, data }) {
       }
     }
   };
-
+  
   useEffect(() => {
     if (getP != null) {
       checkParams();
