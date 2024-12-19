@@ -1,0 +1,22 @@
+.input-group {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .time-picker-input {
+    border: none;
+    flex: 1; /* Agar input menyesuaikan lebar */
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .input-group-text {
+    background-color: #f8f9fa;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  

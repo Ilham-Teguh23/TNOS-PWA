@@ -510,22 +510,22 @@ function SectionMobile() {
     const othersComponents = [
         {
             value: 1,
-            label: "Include"
+            label: "Termasuk biaya pesanan"
         },
         {
             value: 2,
-            label: "Exclude"
+            label: "Disediakan Pengguna"
         }
     ]
 
     const technicalMeetingOptions = [
         {
             value: 1,
-            label: "Include"
+            label: "Ada"
         },
         {
             value: 2,
-            label: "Exclude"
+            label: "Tidak Ada"
         }
     ]
 
