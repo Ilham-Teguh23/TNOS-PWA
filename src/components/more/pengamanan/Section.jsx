@@ -65,7 +65,9 @@ function Section() {
     const staticValidationSchema = {
         needs: Yup.string().required("Keperluan Pengamanan Wajib Diisi"),
         location: Yup.string().required("Lokasi Pengamanan Wajib Diisi"),
-        nama_pic: Yup.string().required("Nama Penanggung Jawab Wajib Diisi"),
+        nama_pic: Yup.string()
+            .required("Nama Penanggung Jawab Wajib Diisi")
+            .matches(/^[A-Za-z\s]+$/, "Nama Penanggung Jawab hanya boleh berisi huruf"),
         nomor_pic: Yup.string().required("No HP Penanggung Jawab Wajib Diisi"),
         hari: Yup.string().required("Jumlah Hari Wajib Diisi"),
         ketentuan_cek: Yup.boolean().oneOf([true], "Ketentuan wajib di isi")

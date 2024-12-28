@@ -20,7 +20,8 @@ import Select from "react-select";
 import NoTransactionComponent from "../../moleculars/NoTransactionComponent";
 import { useTranslation } from "react-i18next";
 import { icon } from "../../utils/IconLayananService";
-import P1 from "../../../assets/images/P1-NEW.png"
+import P1 from "../../../assets/images/P1-NEW.png";
+import axios from "axios";
 
 function RiwayatTransaksi() {
   TitleHeader("Halaman riwayat");
@@ -45,21 +46,53 @@ function RiwayatTransaksi() {
 
     const [layananId, setLayananId] = useState("");
 
-    const options = [
+    const [options, setOptions] = useState([
       { value: "", label: t("history4") },
-      { value: "1", label: t("history5") },
-      { value: "2", label: t("history6") },
-      { value: "3", label: t("history7") },
-    ];
+      { value: "1", label: t("history7") },
+      { value: "2", label: t("layanan7") },
+      { value: "3", label: "Guard" },
+    ]);
+
+    // useEffect(() => {
+    //   const fetchData = async () => {
+    //     try {
+    //       const response = await axios.get(
+    //         `${process.env.REACT_APP_API_PWA}/dashboard/pwa-revamp/provider`
+    //       );
+
+    //       let filteredData = [];
+
+    //       filteredData = response.data.data.provider.filter(
+    //         (item) => item.status === "1"
+    //       );
+
+    //       const dynamicOptions = filteredData.map((item) => ({
+    //         value: item.id,
+    //         label: item.name_sc,
+    //       }));
+
+    //       setOptions((prevOptions) => [...prevOptions, ...dynamicOptions]);
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   };
+
+    //   fetchData();
+    // }, []);
 
     let renderData = "";
     if (list_history_by_user) {
-      // console.log(list_history_by_user)
+
       renderData = !layananId
         ? list_history_by_user &&
           list_history_by_user?.map((row, key) => {
-            const width = (row?.tnos_service_id === "3" && row?.tnos_subservice_id === "8") || (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "1") ? { width: '55px' } : {width: ''};
-          
+            const width =
+              (row?.tnos_service_id === "3" &&
+                row?.tnos_subservice_id === "8") ||
+              (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "1")
+                ? { width: "55px" }
+                : { width: "" };
+
             return (
               <div
                 key={key}
@@ -67,12 +100,17 @@ function RiwayatTransaksi() {
                 onClick={() => navigate(`/history/${row?.id}`)}
               >
                 <img
-                  src={row?.tnos_service_id === "6" && row?.tnos_subservice_id === "1" ? P1 : icon(
-                    getNameLayanan(
-                      row?.tnos_service_id,
-                      row?.tnos_subservice_id
-                    )
-                  )}
+                  src={
+                    row?.tnos_service_id === "6" &&
+                    row?.tnos_subservice_id === "1"
+                      ? P1
+                      : icon(
+                          getNameLayanan(
+                            row?.tnos_service_id,
+                            row?.tnos_subservice_id
+                          )
+                        )
+                  }
                   alt=""
                   style={width}
                 />
@@ -91,7 +129,13 @@ function RiwayatTransaksi() {
                     value={getStatusPayment(row.payment_status)}
                   />
                   <ContentTitleValue
-                    type={row.status_order == "001" ? 'menunggu' : row.status_order == "RUN" ? "waiting" : "success" }
+                    type={
+                      row.status_order == "001"
+                        ? "menunggu"
+                        : row.status_order == "RUN"
+                        ? "waiting"
+                        : "success"
+                    }
                     title={`${t("history9")}:`}
                     value={getStatusOrder(row.status_order)}
                   />
@@ -111,9 +155,31 @@ function RiwayatTransaksi() {
           })
         : list_history_by_user &&
           list_history_by_user
-            ?.filter((row) => row.tnos_service_id === layananId)
+            ?.filter((row) => {
+              if (layananId === "") {
+                return true;
+              } else if (layananId === "1") {
+                return (
+                  row.tnos_service_id === "3" && row.tnos_subservice_id === "7"
+                );
+              } else if (layananId === "2") {
+                return (
+                  row.tnos_service_id === "3" && row.tnos_subservice_id === "8"
+                );
+              } else if (layananId === "3") {
+                return (
+                  row.tnos_service_id === "6" && row.tnos_subservice_id === "1"
+                );
+              } else {
+                return false;
+              }
+            })
             .map((row, key) => {
-              const width = row?.tnos_service_id == 3 && row?.tnos_subservice_id == 8 ? { width: '55px' } : {width: ''};
+              const width =
+                (row?.tnos_service_id === "3" && row?.tnos_subservice_id === "8") ||
+                (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "1")
+                  ? { width: "55px" }
+                  : { width: "" };
 
               return (
                 <div
@@ -146,7 +212,13 @@ function RiwayatTransaksi() {
                       value={getStatusPayment(row.payment_status)}
                     />
                     <ContentTitleValue
-                      type={row.status_order == "001" ? 'menunggu' : row.status_order == "RUN" ? "waiting" : "success" }
+                      type={
+                        row.status_order == "001"
+                          ? "menunggu"
+                          : row.status_order == "RUN"
+                          ? "waiting"
+                          : "success"
+                      }
                       title={`${t("history9")}:`}
                       value={getStatusOrder(row.status_order)}
                     />
@@ -172,7 +244,11 @@ function RiwayatTransaksi() {
           <Select
             onChange={(e) => setLayananId(e.value)}
             options={options}
-            value={layananId?.label}
+            value={
+              options.find((option) => {
+                return option.value === layananId;
+              }) || null
+            }
             styles={{
               control: (baseStyles, state) => ({
                 ...baseStyles,
