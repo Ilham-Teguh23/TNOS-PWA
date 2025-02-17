@@ -32,7 +32,7 @@ function PaymentSuccess() {
                 description=""
               />
               <Gap height={60} />
-              <ButtonNotif title="Lanjut ke Mitra" />
+              <ButtonNotif title="Lanjut ke Beranda" />
             </div>
           </div>
         </div>

@@ -251,7 +251,6 @@ function DetailBadanHukumAsosiasi() {
                   >
                     https://oss.go.id/informasi/kbli-berbasis-risiko
                   </a>
-                  )
                 </label>
                 <textarea
                   name="bidang"

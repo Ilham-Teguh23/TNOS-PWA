@@ -11,6 +11,7 @@ import TitleHeader from "../../utils/TitleHeader";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import CryptoJS from "crypto-js";
+import PratamaGada from "../../../assets/images/pratama-gada.png"
 
 function Dashboard() {
   TitleHeader("Halaman dashboard");
@@ -32,6 +33,8 @@ function Dashboard() {
   const encrypt = CryptoJS.AES.encrypt(jsonData, "Ach2o1&invVocS%*n25F*cQhash209").toString()
   const encrypData = btoa(encrypt)
 
+//   console.log(encrypData);
+
   return (
     <>
       <TopNewNav
@@ -52,7 +55,7 @@ function Dashboard() {
               <PaddingPwa padding={15}>
                 <center>
                   <div className="row mt-3">
-                    <div className="col-4">
+                    <div className="col-6">
                       <div
                         className="container-card-f-f"
                         onClick={() => navigate("/security-providers")}
@@ -63,7 +66,7 @@ function Dashboard() {
                         <div className="title">{t("layanan2")}</div>
                       </div>
                     </div>
-                    <div className="col-4">
+                    <div className="col-6">
                       <div
                         className="container-card-f-f"
                         onClick={() =>
@@ -76,7 +79,33 @@ function Dashboard() {
                         <div className="title">{t("layanan3")}</div>
                       </div>
                     </div>
-                    <div className="col-4">
+                    {/* <div className="col-4">
+                      <div
+                        className="container-card-f-f"
+                        onClick={() => navigate("/pembayaran-lainnya")}
+                      >
+                        <div className="card-dashboard-fkf">
+                          <img src={lainnya} alt="" style={{ width: "69px" }} />
+                        </div>
+                        <div className="title">{t("layanan7")}</div>
+                      </div>
+                    </div> */}
+                  </div>
+                  <div className="row mt-3">
+                    <div className="col-6">
+                      <div
+                        className="container-card-f-f"
+                        onClick={() => navigate("/pengurusan-gada-pratama")}
+                      >
+                        <div className="card-dashboard-fkf">
+                          <img src={PratamaGada} alt="" style={{ width: "69px" }} />
+                        </div>
+                        <div className="title">
+                          {t("layanan8")}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-6">
                       <div
                         className="container-card-f-f"
                         onClick={() => navigate("/pembayaran-lainnya")}

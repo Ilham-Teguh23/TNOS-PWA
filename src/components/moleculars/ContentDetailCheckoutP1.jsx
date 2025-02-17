@@ -92,7 +92,7 @@ function ContentDetailCheckoutP1({ layanan, data }) {
                 setJsonData(convert)
 
                 const convertOthers = JSON.parse(data?.history?.json_others_component)
-                
+
                 setJsonComponent(convertOthers)
 
                 const updatedComponents = convertOthers.map(item => ({
@@ -127,7 +127,7 @@ function ContentDetailCheckoutP1({ layanan, data }) {
                                 unitOthers += Number(product.value)
 
                                 if (subsection.others && subsection.others.length > 0) {
-                                    
+
                                     subsection.others.forEach((other) => {
                                         totalHargaPWA += other.value
                                     })
@@ -150,7 +150,7 @@ function ContentDetailCheckoutP1({ layanan, data }) {
             color: 'var(--font-color4)'
         }
     }
-    
+
     const renderContent = () => {
         switch (layanan) {
             case "P1 Force":
@@ -224,7 +224,8 @@ function ContentDetailCheckoutP1({ layanan, data }) {
                                         <div style={{ fontWeight: 'bold' }} key={index}>
                                             <CheckoutHeader
                                                 image={""}
-                                                alt={item.name}
+                                                alt={""}
+                                                title={item.name}
                                             />
                                             {item.subsections && item.subsections.length > 0 && (
                                                 item.subsections.map((subsection, subIndex) => {
@@ -233,25 +234,27 @@ function ContentDetailCheckoutP1({ layanan, data }) {
                                                     return (
                                                         <div style={{ paddingTop: '7px' }} key={subIndex}>
                                                             <CheckoutHeader
-                                                                alt={subsection.name}
+                                                                image={""}
+                                                                alt={""}
+                                                                title={subsection.name}
                                                             />
                                                             {subsection.products && subsection.products.length > 0 && (
                                                                 <>
                                                                     {subsection.products.map((products, productsIndex) => (
                                                                         <div key={productsIndex}>
-                                                                            <div className="row">
+                                                                            <div className="row" style={{lineHeight: '24px'}}>
                                                                                 <div className="col-md-5">
-                                                                                    <div style={stylesValue.titleValue}>
+                                                                                    <div style={{fontSize: '12px', fontWeight: '400'}}>
                                                                                         {products.column}
                                                                                     </div>
                                                                                 </div>
                                                                                 <div className="col-md-3">
-                                                                                    <div style={{ ...stylesValue.titleValue, fontWeight: 'bold' }}>
+                                                                                    <div style={{ fontSize: '12px', fontWeight: 'bold' }}>
                                                                                         {` ( ${products.value} ${products.unit} ) `}
                                                                                     </div>
                                                                                 </div>
                                                                                 <div className="col-md-4">
-                                                                                    <div style={{ ...stylesValue.titleValue, textAlign: 'right', fontWeight: 'bold' }}>
+                                                                                    <div style={{ fontSize: '12px', textAlign: 'right', fontWeight: 'bold' }}>
                                                                                         {`Rp. ${(products.harga_pwa * products.value).toLocaleString('id-ID', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`}
                                                                                     </div>
                                                                                 </div>
@@ -261,19 +264,19 @@ function ContentDetailCheckoutP1({ layanan, data }) {
                                                                     {subsection.others && subsection.others.length > 0 && (
                                                                         subsection.others.map((others, othersIndex) => (
                                                                             <div key={othersIndex}>
-                                                                                <div className="row">
+                                                                                <div className="row" style={{lineHeight: '24px'}}>
                                                                                     <div className="col-md-5">
-                                                                                        <div style={stylesValue.titleValue}>
+                                                                                        <div style={{fontSize: '12px', fontWeight: '400'}}>
                                                                                             {others.others_column}
                                                                                         </div>
                                                                                     </div>
                                                                                     <div className="col-md-3">
-                                                                                        <div style={{ ...stylesValue.titleValue, fontWeight: 'bold' }}>
+                                                                                        <div style={{ fontSize: '12px', fontWeight: 'bold' }}>
                                                                                             {` ( ${totalValue} ${others.unit} ) `}
                                                                                         </div>
                                                                                     </div>
                                                                                     <div className="col-md-4">
-                                                                                        <div style={{ ...stylesValue.titleValue, fontWeight: 'bold', textAlign: 'right' }}>
+                                                                                        <div style={{ fontSize: '12px', fontWeight: 'bold', textAlign: 'right' }}>
                                                                                             {`Rp. ${(others.value * totalValue).toLocaleString('id-ID', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`}
                                                                                         </div>
                                                                                     </div>
@@ -296,19 +299,19 @@ function ContentDetailCheckoutP1({ layanan, data }) {
 
                             <hr />
 
-                            <div className="row">
+                            <div className="row" style={{ lineHeight: '24px' }}>
                                 <div className="col-md-5">
-                                    <div style={stylesValue.titleValue}>
+                                    <div style={{fontSize: '12px'}}>
                                         {data?.layanan} {data?.detail?.durasi_pengamanan} Jam
                                     </div>
                                 </div>
                                 <div className="col-md-3">
-                                    <div style={{ ...stylesValue.titleValue, fontWeight: 'bold' }}>
+                                    <div style={{ fontSize: '12px', fontWeight: 'bold' }}>
                                         {` ( ${data?.history?.hari} Hari ) `}
                                     </div>
                                 </div>
                                 <div className="col-md-4">
-                                    <div style={{ ...stylesValue.titleValue, fontWeight: 'bold', textAlign: 'right' }}>
+                                    <div style={{ fontSize: '12px', fontWeight: 'bold', textAlign: 'right' }}>
                                         {`Rp. ${(totalHargaPWA * data?.history?.hari).toLocaleString('id-ID', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} `}
                                     </div>
                                 </div>
@@ -317,14 +320,14 @@ function ContentDetailCheckoutP1({ layanan, data }) {
                             {getJsonComponent && getJsonComponent.length > 0 && (
                                 <>
                                     {getJsonComponent.map((komponen, komponenIndex) => (
-                                        <div key={komponenIndex} className="row">
+                                        <div key={komponenIndex} className="row" style={{lineHeight: '24px'}}>
                                             <div className="col-md-8">
-                                                <div style={stylesValue.titleValue}>
+                                                <div style={{fontSize: '12px', fontWeight: '400'}}>
                                                     {komponen.nama_komponen}
                                                 </div>
                                             </div>
                                             <div className="col-md-4">
-                                                <div style={{ ...stylesValue.titleValue, fontWeight: 'bold', textAlign: 'right' }}>
+                                                <div style={{ fontSize: '12px', fontWeight: 'bold', textAlign: 'right' }}>
 
                                                     {`Rp. ${(komponen.harga_akhir).toLocaleString('id-ID', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} `}
                                                 </div>
@@ -349,14 +352,14 @@ function ContentDetailCheckoutP1({ layanan, data }) {
 
                             <hr/>
 
-                            <div className="row">
+                            <div className="row" style={{lineHeight: '24px'}}>
                                 <div className="col-md-8">
-                                    <div style={stylesValue.titleValue}>
+                                    <div style={{fontSize: '12px', fontWeight: '400'}}>
                                         Total Pembayaran
                                     </div>
                                 </div>
                                 <div className="col-md-4">
-                                    <div style={{ ...stylesValue.titleValue, fontWeight: 'bold', textAlign: 'right' }}>
+                                    <div style={{ fontSize: '12px', fontWeight: 'bold', textAlign: 'right' }}>
                                         {`Rp. ${(data?.detail?.order_total).toLocaleString('id-ID', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} `}
                                     </div>
                                 </div>

@@ -58,6 +58,7 @@ function SectionMobile() {
     const [getProductById, setDataProductById] = useState([]);
     const [getProductBySectionId, setProductBySectionId] = useState([]);
     const [getOthersById, setOthersById] = useState([])
+    const [getOthersNoSubById, setOthersNoSubById] = useState([])
     const [getComponent, setComponent] = useState([])
 
     const [show, setShow] = useState(false);
@@ -189,7 +190,12 @@ function SectionMobile() {
     const [location, setLocation] = useState("");
     const [status, setStatus] = useState("");
     const [mapErr, setMapErr] = useState(false);
-    var user = JSON.parse(localStorage.getItem("userInfo"))
+    // var user = JSON.parse(localStorage.getItem("userInfo"))
+
+    const [user, setUser] = useState(
+        JSON.parse(localStorage.getItem("userInfo"))
+    );
+
     const navigate = useNavigate();
     const params = useParams();
     const dispatch = useDispatch();
@@ -290,7 +296,7 @@ function SectionMobile() {
 
             const dynamicValues = [];
             getDataSectionById?.section?.forEach((section) => {
-                const subsectionsArray = [];
+                const subsectionsArray = []
 
                 getDataSubSectionId
                     .filter((subsection) => subsection.section_id === section.id)
@@ -300,12 +306,11 @@ function SectionMobile() {
                         getProductById
                             .filter((product) => product.section_id === subsection.id)
                             .forEach((product) => {
+                                const value = parseFloat(formik.values[product.column] || 0);
+                                const harga_pwa = parseFloat(product.harga || 0);
+                                const subtotal = harga_pwa * value;
 
-                                const value = parseFloat(formik.values[product.column] || 0)
-                                const harga_pwa = parseFloat(product.harga || 0)
-                                const subtotal = harga_pwa * value
-
-                                orderTotal += subtotal
+                                orderTotal += subtotal;
 
                                 productsArrayInSubsection.push({
                                     column: product.column,
@@ -325,27 +330,29 @@ function SectionMobile() {
                         getOthersById
                             .filter((others) => others.url_id === subsection.id)
                             .forEach((others) => {
-
-                                const othersHarga = parseFloat(others.harga || 0)
-                                let totalProductValues = 0
+                                const othersHarga = parseFloat(others.harga || 0);
+                                let totalProductValues = 0;
 
                                 productsArrayInSubsection.forEach((product) => {
-                                    totalProductValues += parseFloat(product.value || 0)
-                                })
+                                    totalProductValues += parseFloat(product.value || 0);
+                                });
 
-                                const othersSubtotal = othersHarga * totalProductValues
-
-                                orderTotal += othersSubtotal;
+                                const othersSubtotal = othersHarga * totalProductValues;
 
                                 if (formik.values[`others_${others.id}`] === 1) {
+                                    // Tambahkan subtotal ke orderTotal hanya jika nilai adalah 1
+                                    orderTotal += othersSubtotal;
+
                                     othersArrayInSubSection.push({
                                         others_column: others.others_column,
                                         value: others.harga,
                                         unit: others.satuans.satuan
-                                    })
+                                    });
+                                } else {
+                                    // Pastikan tidak menambah nilai apapun ke orderTotal
+                                    othersArrayInSubSection.push();
                                 }
-
-                            })
+                            });
 
                         subsectionsArray.push({
                             name: subsection.name,
@@ -354,26 +361,94 @@ function SectionMobile() {
                         });
                     });
 
-                const productsArrayInSection = [];
+
+
+                const productsArrayInSection = []
+                const productsArraySectionDirect = []
+                const matchedProductsAndOthers = []
+
                 getProductBySectionId
                     .filter((product) => product.section_id === section.id)
                     .forEach((product) => {
+                        const value = parseFloat(formik.values[product.column] || 0)
+                        const harga_pwa = parseFloat(product.harga || 0)
+                        const subtotal = harga_pwa * value
 
-                        // const value = parseFloat(formik.values[product.column] || 0);
-                        // const harga_pwa = parseFloat(product.harga || 0);
-                        // const subtotal = harga_pwa * value;
+                        orderTotal += subtotal
 
-                        productsArrayInSection.push({
-                            column: product.column,
-                            value: formik.values[product.column] || "", // Nilai input dari formik
-                        });
-                    });
+                        const matchedDataOthers = getOthersNoSubById.filter(
+                            (othersLayananByIdData) =>
+                                othersLayananByIdData.url_id = section.id &&
+                                othersLayananByIdData.product.id === product.id
+                        )
 
-                dynamicValues.push({
+                        productsArraySectionDirect.push({
+                            data: [
+                                {
+                                    column: product.column,
+                                    value: formik.values[product.column] || "",
+                                    harga_pwa: product.harga,
+                                    unit: product.satuans.satuan,
+                                    harga_dasar: product.harga_dasar,
+                                    include_tnos_fee: product.include_tnos_fee,
+                                    include_ppn: product.include_ppn,
+                                    tnos_fee: product.tnos_fee,
+                                    platform_fee: product.platform_fee
+                                }
+                            ]
+                        })
+
+                        matchedDataOthers
+                            .forEach((others) => {
+                                if (formik.values[`others_${others.id}`] === 1) {
+                                    productsArraySectionDirect.push({
+                                        others: [
+                                            {
+                                                others_column: others.others_column,
+                                                value: others.harga,
+                                                unit: others.satuans.satuan
+                                            }
+                                        ]
+                                    })
+                                }
+                            })
+                    })
+
+                // getOthersNoSubById
+                //     .filter((others) => others.url_id === section.id)
+                //     .forEach((others) => {
+                //         const othersHarga = parseFloat(others.harga || 0)
+                //         let totalProductValues = 0
+
+                //         productsArraySectionDirect.forEach((productObj) => {
+                //             totalProductValues += parseFloat(productObj.data[0].value || 0)
+
+                //             const othersSubtotal = othersHarga * totalProductValues
+
+                //             orderTotal += othersSubtotal
+
+
+                //         })
+                //     })
+
+                // productsArraySectionDirect.push({
+                //     others: othersArrayInNoSub,
+                //     data: productsArrayInSection
+                // })
+
+                const objectData = {
                     name: section.name,
-                    subsections: subsectionsArray,
-                    products: productsArrayInSection
-                });
+                }
+
+                if (productsArraySectionDirect.length > 0) {
+                    objectData.products = productsArraySectionDirect;
+                }
+
+                if (subsectionsArray.length > 0) {
+                    objectData.subsections = subsectionsArray
+                }
+
+                dynamicValues.push(objectData)
             });
 
             const dynamicOthersComponents = [];
@@ -401,10 +476,10 @@ function SectionMobile() {
                 jumlah_tenaga_pengamanan: personel,
                 idprovider: params?.id,
                 jam_mulai: time,
-                user_id: user.mmbr_code,
-                name: user.mmbr_name,
-                email: user.mmbr_email,
-                phone: user.mmbr_phone,
+                user_id: user?.user_id,
+                name: user?.name,
+                email: user?.email,
+                phone: user?.phone,
                 hari: values.hari,
                 needs: values.needs,
                 location: values.location,
@@ -413,7 +488,7 @@ function SectionMobile() {
                 id_layanan: locationUrl.pathname.split("/")[3],
                 orderTotal: orderTotal * values.hari,
                 durasi_pengamanan: getDurasi?.durasi,
-                params: getP
+                parameter: getP
             };
 
             const finalData = { ...formData, ...additionalFields };
@@ -421,8 +496,7 @@ function SectionMobile() {
             dispatch(
                 await paymentPwanMobile(
                     finalData,
-                    navigate,
-                    "/corporate-security-m/section/checkout/"
+                    navigate
                 )
             );
         },
@@ -555,9 +629,11 @@ function SectionMobile() {
                     console.log("data base64 not match when decrypt");
                 } else {
                     var paramValue = JSON.parse(info2x);
-                    setP(checkP.query);
+                    console.log(paramValue);
+                    setUser(paramValue);
                     localStorage.setItem("data", JSON.stringify(paramValue));
                 }
+
                 if (!localStorage.getItem("data")) {
                     if (!paramValue.user_id) {
                         console.log("salah");
@@ -658,7 +734,7 @@ function SectionMobile() {
                                         }}
                                     >
                                         <img
-                                            src={getLayananData?.providers?.image}
+                                            src={`https://di-kerja.in/api/proxy-image?url=${encodeURIComponent(getLayananData?.providers?.image)}`}
                                             alt={getLayananData?.providers?.name_sc}
                                             style={{ width: '50px' }}
                                         />
@@ -833,7 +909,7 @@ function SectionMobile() {
                                                                 .map((productsById, productsIndex) => (
                                                                     <>
                                                                         <div className="row mb-2" key={productsIndex}>
-                                                                            <div className="col-md-10">
+                                                                            <div className="col-md-8">
                                                                                 <div
                                                                                     className="form-group"
                                                                                 >
@@ -875,7 +951,7 @@ function SectionMobile() {
                                                                                     )}
                                                                                 </div>
                                                                             </div>
-                                                                            <div className="col-md-2 d-flex align-items-center">
+                                                                            <div className="col-md-4 d-flex align-items-center">
                                                                                 {productsById.satuans.satuan}
                                                                             </div>
                                                                         </div>
@@ -889,7 +965,7 @@ function SectionMobile() {
                                                                 ).map((othersById, othersIndex) => (
                                                                     <>
                                                                         <div key={othersIndex} className="row">
-                                                                            <div className="col-md-10">
+                                                                            <div className="col-md-8">
                                                                                 <div className="mb-3 form-group">
                                                                                     <div style={{ display: "flex", flexDirection: "row" }}>
                                                                                         <LabelComponent label={`${othersById.others_column}`} />{" "}
@@ -917,7 +993,7 @@ function SectionMobile() {
                                                                                     ) : null}
                                                                                 </div>
                                                                             </div>
-                                                                            <div className="col-md-2 d-flex align-items-center">
+                                                                            <div className="col-md-4 d-flex align-items-center">
                                                                                 <div
                                                                                     style={{
                                                                                         paddingTop: '5px'
@@ -934,48 +1010,89 @@ function SectionMobile() {
                                                     ))}
 
                                                 {getProductBySectionId
-                                                    .filter(
-                                                        (productsSection) =>
-                                                            productsSection.section_id === section.id
-                                                    )
-                                                    .map((productSection, productSectionIndex) => (
-                                                        <>
-                                                            <div
-                                                                key={productSectionIndex}
-                                                                className="mb-2 form-group"
-                                                            >
-                                                                <div
-                                                                    style={{
-                                                                        display: "flex",
-                                                                        flexDirection: "row",
-                                                                    }}
-                                                                >
-                                                                    <LabelComponent
-                                                                        label={`${productSection.column}`}
-                                                                    />
-                                                                    <span style={{ color: "red" }}>*</span>
+                                                    .filter((productsSection) => productsSection.section_id === section.id)
+                                                    .map((productSection, productSectionIndex) => {
+                                                        const matchedOthers = getOthersNoSubById.filter(
+                                                            (othersLayananById) =>
+                                                                othersLayananById.url_id === section.id &&
+                                                                othersLayananById.product.id === productSection.id
+                                                        );
+
+                                                        return (
+                                                            <React.Fragment key={productSectionIndex}>
+                                                                <div className="row mb-2">
+                                                                    <div className="col-md-8">
+                                                                        <div className="form-group">
+                                                                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                                                                <LabelComponent label={`${productSection.column}`} />
+                                                                                <span style={{ color: "red" }}>*</span>
+                                                                            </div>
+                                                                            <InputComponent
+                                                                                value={formik.values[`${productSection.column}`]}
+                                                                                onChange={formik.handleChange(`${productSection.column}`)}
+                                                                                onBlur={formik.handleBlur(`${productSection.column}`)}
+                                                                                placeholder="Masukkan Jumlah Keperluan"
+                                                                            />
+                                                                            <span style={{ fontSize: '10px' }}>
+                                                                                ( Isikan 0 Apabila Tidak Ingin Disertakan )
+                                                                            </span>
+                                                                            {formik.errors[`${productSection.column}`] && formik.touched[`${productSection.column}`] ? (
+                                                                                <TextError error={formik.errors[`${productSection.column}`]} />
+                                                                            ) : null}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="col-md-4 d-flex align-items-center">
+                                                                        {productSection.satuans.satuan}
+                                                                    </div>
                                                                 </div>
-                                                                <InputComponent
-                                                                    value={formik.values[`${productSection.column}`]}
-                                                                    onChange={formik.handleChange(
-                                                                        `${productSection.column}`
-                                                                    )}
-                                                                    onBlur={formik.handleBlur(
-                                                                        `${productSection.column}`
-                                                                    )}
-                                                                    placeholder={`Masukkan Keperluan ${productSection.column}`}
-                                                                />
-                                                                {formik.errors[`${productSection.column}`] &&
-                                                                    formik.touched[`${productSection.column}`] ? (
-                                                                    <TextError
-                                                                        error={formik.errors[`${productSection.column}`]}
-                                                                    />
-                                                                ) : (
-                                                                    ""
-                                                                )}
-                                                            </div>
-                                                        </>
-                                                    ))}
+
+                                                                {matchedOthers.length > 0 &&
+                                                                    matchedOthers.map((othersById, othersIndex) => (
+                                                                        <div key={othersIndex} className="row">
+                                                                            <div className="col-md-8">
+                                                                                <div className="mb-3 form-group">
+                                                                                    <div style={{ display: "flex", flexDirection: "row" }}>
+                                                                                        <LabelComponent label={`${othersById.others_column}`} />{" "}
+                                                                                        <span style={{ color: "red" }}>*</span>
+                                                                                    </div>
+                                                                                    <Select
+                                                                                        options={othersComponents}
+                                                                                        onChange={(selectedOptionOthersComponent) => {
+                                                                                            formik.setFieldValue(
+                                                                                                `others_${othersById.id}`,
+                                                                                                selectedOptionOthersComponent
+                                                                                                    ? selectedOptionOthersComponent.value
+                                                                                                    : ""
+                                                                                            );
+                                                                                        }}
+                                                                                        value={othersComponents.find(
+                                                                                            (option) => option.value === formik.values[`others_${othersById.id}`]
+                                                                                        )}
+                                                                                        onBlur={() => formik.setFieldTouched(`others_${othersById.id}`, true)}
+                                                                                        styles={{
+                                                                                            control: (baseStyles) => ({
+                                                                                                ...baseStyles,
+                                                                                                padding: "0.18rem",
+                                                                                                fontSize: "0.9rem",
+                                                                                            }),
+                                                                                        }}
+                                                                                    />
+                                                                                    {formik.errors[`others_${othersById.id}`] && formik.touched[`others_${othersById.id}`] ? (
+                                                                                        <TextError error={formik.errors[`others_${othersById.id}`]} />
+                                                                                    ) : null}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="col-md-4 d-flex align-items-center">
+                                                                                <div style={{ paddingTop: '5px' }}>
+                                                                                    {othersById.satuans.satuan}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    ))}
+                                                            </React.Fragment>
+                                                        );
+                                                    })}
+
                                             </>
                                         ))
                                     ) : (
@@ -993,7 +1110,7 @@ function SectionMobile() {
                                     {getComponent.map((komponen, komponenIndex) => (
                                         <>
                                             <div key={komponenIndex} className="row">
-                                                <div className="col-md-7">
+                                                <div className="col-md-8">
                                                     <div className="mb-3 form-group">
                                                         <div style={{ display: "flex", flexDirection: "row" }}>
                                                             <LabelComponent label={`${komponen.komponen}`} />{" "}
@@ -1020,7 +1137,7 @@ function SectionMobile() {
                                                         ) : null}
                                                     </div>
                                                 </div>
-                                                <div className="col-md-5 d-flex align-items-center">
+                                                <div className="col-md-4 d-flex align-items-center">
                                                     <div
                                                         style={{
                                                             paddingTop: '5px'
@@ -1058,7 +1175,6 @@ function SectionMobile() {
                                 <Gap height={70} />
                                 <ButtonComponent
                                     title={t("guard7")}
-                                    disabled={err1?.iserr}
                                     onClick={formik.handleSubmit}
                                     type="button"
                                 />

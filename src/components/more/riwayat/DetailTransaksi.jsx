@@ -341,8 +341,9 @@ function DetailTransaksi() {
                                     <PaddingPwa padding={15}>
                                         <div className="detail-riwayat-container">
                                             <img
-                                                src={PAS}
-                                                alt="not internet connection"
+                                                src={`https://di-kerja.in/api/proxy-image?url=${encodeURIComponent(detail_data_layanan?.detail?.provider?.image)}`}
+                                                alt={detail_data_layanan?.detail?.provider?.name_sc}
+                                                style={{width: '60px'}}
                                             />
                                             <div className="content-detail">
                                                 <div className="title-f">

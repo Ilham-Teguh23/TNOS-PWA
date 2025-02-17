@@ -216,7 +216,7 @@ function RingkasanSection() {
                                     <>
                                         <div className="detail-riwayat-container">
                                             <img
-                                                src={getDetail?.image}
+                                                src={`https://di-kerja.in/api/proxy-image?url=${encodeURIComponent(getDetail?.image)}`}
                                                 alt={getDetail?.provider}
                                                 style={{width: '60px'}}
                                             />

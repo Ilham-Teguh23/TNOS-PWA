@@ -108,7 +108,7 @@ function ListPengamananProvider() {
                                 <div key={index} className="flexbox">
                                     <div style={{ display: "flex", flexDirection: "row" }}>
                                         <img
-                                            src={provider.image}
+                                            src={`https://di-kerja.in/api/proxy-image?url=${encodeURIComponent(provider.image)}`}
                                             alt={provider.name_sc}
                                             style={{
                                                 width: "60px",
@@ -351,7 +351,7 @@ function ListPengamananProvider() {
                                         }}
                                     >
                                         <img
-                                            src={getProviderById.image}
+                                            src={`https://di-kerja.in/api/proxy-image?url=${encodeURIComponent(getProviderById.image)}`}
                                             alt={getProviderById.name_sc}
                                             style={
                                                 drawerOpen?.mitra === t("partner3")

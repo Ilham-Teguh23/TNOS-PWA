@@ -150,6 +150,8 @@ const logoutController = () => (dispatch) => {
 const registerController = (data, navigate) => (dispatch) => {
   const cipherBasic = generateChiperBasic(20);
 
+  console.log(data);
+
   const config = {
     headers: {
       Authorization: `Basic ${cipherBasic}`,
@@ -176,7 +178,7 @@ const registerController = (data, navigate) => (dispatch) => {
       }
     })
     .catch((error) => {
-      console.log("error", error);
+      console.log("error", error.message);
     });
 };
 

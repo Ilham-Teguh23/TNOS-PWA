@@ -104,7 +104,7 @@ function HeaderCheckoutLayanan({ layanan, payment_status }) {
       <img
         src={icon(layanan)}
         alt="not internet connection"
-        style={layanan == t("layanan7") ? { width: "50px" } : {}}
+        style={layanan === t("layanan7") || "Pembuatan Baru" || "Perpanjangan" ? { width: "50px" } : {}}
       />
       <div className="content-detail">
         <div className="title-f">{layanan}</div>

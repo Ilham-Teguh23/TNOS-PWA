@@ -30,7 +30,7 @@ function ListLayanan() {
             const response = await axios.get(
                 `${process.env.REACT_APP_API_PWA}/dashboard/pwa-revamp/layanan/${id}`
             );
-    
+
             setDataLayananById(response.data.data.layanan);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -87,7 +87,7 @@ function ListLayanan() {
                                     <div key={id} className="flexbox">
                                         <div style={{ display: "flex", flexDirection: "row" }}>
                                             <img
-                                                src={layanan?.providers?.image}
+                                                src={`https://di-kerja.in/api/proxy-image?url=${encodeURIComponent(layanan?.providers?.image)}`}
                                                 alt={layanan?.name_sc}
                                                 style={{
                                                     width: "60px",

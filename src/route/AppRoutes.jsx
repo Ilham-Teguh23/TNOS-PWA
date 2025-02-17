@@ -143,7 +143,7 @@ import BadanPerkumpulanMobile from "../components/more/badan-hukum-mobile/BadanP
 import DetailBadanPerkumpulanMobile from "../components/more/badan-hukum-mobile/DetailBadanPerkumpulanMobile";
 import BadanLainnyaMobile from "../components/more/badan-hukum-mobile/BadanLainnyaMobile";
 import DetailBadanLainnyaMobile from "../components/more/badan-hukum-mobile/DetailBadanLainnyaMobile";
-import DetailTransaksiMobile from "../components/more/riwayat-mobile/DetailTransaksiMobile";
+import DetailTransaksiMobile from "../components/more/riwayat-mobile/DetailTransaksiMobile.jsx";
 import ListPengamananProvider from "../components/more/pengamanan/ListPengamananProvider.jsx";
 import ListPengamananProviderMobile from "../components/more/pengamanan/ListPengamananProviderMobile.jsx";
 import ListLayanan from "../components/dashboard/ListLayanan.jsx";
@@ -158,7 +158,9 @@ import BlankPage from "../components/more/pengamanan/BlankPage.jsx";
 import PaymentBonn from "../components/payment/PaymentBonn.jsx";
 import RingkasanSection from "../components/more/pengamanan/RingkasanSection.jsx";
 import RingkasanSectionMobile from "../components/more/pengamanan/RingkasanSectionMobile.jsx";
-
+import PengurusanGadaPratama from "../components/more/pengurusan-gada-pratama/Pengurusan.jsx"
+import FormPengurusanGadaPratama from "../components/more/pengurusan-gada-pratama/FormPengurusan.jsx"
+import RingkasanPengurusan from "../components/more/pengurusan-gada-pratama/RingkasanPengurusan.jsx";
 //Context
 
 function AppRoutes() {
@@ -327,6 +329,34 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       />
+
+      <Route 
+        path="/pengurusan-gada-pratama"
+        element={
+          <ProtectedRoute>
+            <PengurusanGadaPratama/>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/pengurusan-gada-pratama/:id"
+        element={
+          <ProtectedRoute>
+            <FormPengurusanGadaPratama/>
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/pengurusan-gada-pratama/:id/ringkasan"
+        element={
+          <ProtectedRoute>
+            <RingkasanPengurusan/>
+          </ProtectedRoute>
+        }
+      />
+
       <Route
         path="/business-or-legal-entity"
         element={
@@ -587,9 +617,9 @@ function AppRoutes() {
       <Route
         path="/pengamanan-corporate-m"
         element={
-          <ProtectedRoute>
+          // <ProtectedRoute>
             <ListPengamananProviderMobile />
-          </ProtectedRoute>
+          // </ProtectedRoute>
         }
       />
       <Route

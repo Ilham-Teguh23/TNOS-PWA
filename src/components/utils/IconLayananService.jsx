@@ -6,6 +6,7 @@ import PAS from "../../assets/images/TRIGGER.svg";
 import TRIGER from "../../assets/images/PAS.svg"
 import Lainnya from "../../assets/images/new pwa icon/dashboard/iconPembayaranLainnya.png"
 import P1 from "../../assets/images/P1-NEW.png"
+import Pengurusan from "../../assets/images/PratamaGadaIcon.png"
 
 const icon = (layanan) => {
   // console.log(layanan);
@@ -32,6 +33,10 @@ const icon = (layanan) => {
       return Lainnya
     case "P1 Force":
       return P1;
+    case "Pembuatan Baru":
+      return Pengurusan
+    case "Perpanjangan":
+      return Pengurusan
     default:
       return;
   }

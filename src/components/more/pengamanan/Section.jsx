@@ -496,8 +496,7 @@ function Section() {
             dispatch(
                 await paymentPwan(
                     finalData,
-                    navigate,
-                    "/corporate-security/section/checkout/"
+                    navigate
                 )
             );
         },
@@ -733,7 +732,7 @@ function Section() {
                                             }}
                                         >
                                             <img
-                                                src={getLayananData?.providers?.image}
+                                                src={`https://di-kerja.in/api/proxy-image?url=${encodeURIComponent(getLayananData?.providers?.image)}`}
                                                 alt={getLayananData?.providers?.name_sc}
                                                 style={{ width: '50px' }}
                                             />

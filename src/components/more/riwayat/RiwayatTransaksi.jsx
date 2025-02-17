@@ -51,6 +51,7 @@ function RiwayatTransaksi() {
       { value: "1", label: t("history7") },
       { value: "2", label: t("layanan7") },
       { value: "3", label: "Guard" },
+      { value: "4", label: "Gada Pratama" }
     ]);
 
     // useEffect(() => {
@@ -81,6 +82,7 @@ function RiwayatTransaksi() {
     // }, []);
 
     let renderData = "";
+
     if (list_history_by_user) {
 
       renderData = !layananId
@@ -89,7 +91,7 @@ function RiwayatTransaksi() {
             const width =
               (row?.tnos_service_id === "3" &&
                 row?.tnos_subservice_id === "8") ||
-              (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "1")
+              (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "1") || (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "2") || (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "3")
                 ? { width: "55px" }
                 : { width: "" };
 
@@ -134,6 +136,10 @@ function RiwayatTransaksi() {
                         ? "menunggu"
                         : row.status_order == "RUN"
                         ? "waiting"
+                        : row.status_order == "011"
+                        ? "cancel"
+                        : row.status_order == "WAIT"
+                        ? "waiting"
                         : "success"
                     }
                     title={`${t("history9")}:`}
@@ -170,14 +176,21 @@ function RiwayatTransaksi() {
                 return (
                   row.tnos_service_id === "6" && row.tnos_subservice_id === "1"
                 );
+              } else if (layananId === "4") {
+                return (
+                  (row.tnos_service_id === "6" && row.tnos_subservice_id === "2") ||
+                  (row.tnos_service_id === "6" && row.tnos_subservice_id === "3")
+                )
               } else {
-                return false;
+                return false
               }
             })
             .map((row, key) => {
               const width =
                 (row?.tnos_service_id === "3" && row?.tnos_subservice_id === "8") ||
-                (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "1")
+                (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "1") ||
+                (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "2") ||
+                (row?.tnos_service_id === "6" && row?.tnos_subservice_id === "3")
                   ? { width: "55px" }
                   : { width: "" };
 

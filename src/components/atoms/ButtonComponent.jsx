@@ -92,7 +92,7 @@ function ButtonComponent({
                 className="btn-custom"
                 type={type}
                 onClick={onClick}
-                disabled={loading || disabled}
+                disabled={loading}
                 title={title}
               />
             </div>

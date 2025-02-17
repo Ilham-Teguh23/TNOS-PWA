@@ -81,6 +81,32 @@ function InputCheckboxComponent({
             position="relative"
           />
         );
+      case "perpanjangan-gada-pratama":
+        return (
+          <Iframe
+            url="https://tnosbantuan.freshdesk.com/support/solutions/articles/150000200875"
+            width="100%"
+            height="100%"
+            styles={{ minHeight: "100vh" }}
+            id=""
+            className=""
+            display="block"
+            position="relative"
+          />
+        )
+      case "pembuatan-baru-gada-pratama":
+        return (
+          <Iframe
+            url="https://tnosbantuan.freshdesk.com/support/solutions/articles/150000200446"
+            width="100%"
+            height="100%"
+            styles={{ minHeight: "100vh" }}
+            id=""
+            className=""
+            display="block"
+            position="relative"
+          />
+        )
       default:
         return;
     }

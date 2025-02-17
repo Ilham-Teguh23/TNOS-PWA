@@ -33,6 +33,10 @@ const getNameLayanan = (tnos_service_id, tnos_subservice_id) => {
     name = t("partner2");
   } else if (tnos_service_id === "6" && tnos_subservice_id === "1") {
     name = "P1 Force"
+  } else if (tnos_service_id === "6" && tnos_subservice_id === "2" ) {
+    name = "Pembuatan Baru"
+  } else if (tnos_service_id === "6" && tnos_subservice_id === "3") {
+    name = "Perpanjangan"
   } else {
     name = "tidak ada";
   }
@@ -89,6 +93,8 @@ const getStatusOrder = (status_order) => {
     name = "Proses NIB"
   } else if (status_order === "010") {
     name = "Selesai"
+  } else if (status_order === "WAIT") {
+    name = "Menunggu Pembayaran"
   } else {
     name = "Gagal"
   }

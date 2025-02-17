@@ -591,7 +591,7 @@ const pageOthersCreate =
         },
       })
       .then((response) => {
-        
+
         dispatch(setLoading(false));
         navigate(`${urlNavigate}${response?.data?.detail?.id}`);
       })
@@ -602,18 +602,55 @@ const pageOthersCreate =
       });
   };
 
-const badanHukumList = async (id) => (dispatch) => {
+const pelatihanGadaPratama =
+  async (values, navigate, urlNavigate) => (dispatch) => {
+    dispatch(setLoading(true));
+
+    axios
+      .post(`${API_HOST.url}/pelatihan/gada-pratama`, values, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+
+        dispatch(setLoading(false));
+        navigate(`${urlNavigate}/${response?.data?.detail?.id}/ringkasan`);
+      })
+      .catch((error) => {
+        console.log(error);
+        showMessage(error?.response?.data?.message, "error");
+        dispatch(setLoading(false));
+      });
+  };
+
+const badanHukumList = (id) => async (dispatch) => {
   dispatch(setLoading(true));
+
   axios
     .get(`${API_HOST.url}/badan-hukum/get-detail-order/${id}`)
     .then((response) => {
-      if (response.data.type === "others") {
-        dispatch(setDetail_data_layanan(response.data));
+      if (response?.data?.type === "others") {
+        dispatch(setDetail_data_layanan(response?.data));
         dispatch(setLoading(false))
       } else {
-        dispatch(setDetail_data_layanan(response.data));
+        dispatch(setDetail_data_layanan(response?.data));
         dispatch(setLoading(false))
       }
+    })
+    .catch((error) => {
+      showMessage(error?.response?.data?.message, "error");
+      dispatch(setLoading(false));
+    });
+};
+
+const pengurusanRingkasanList = async (id) => (dispatch) => {
+  dispatch(setLoading(true));
+  axios
+    .get(`${API_HOST.url}/pelatihan/gada-pratama/${id}`)
+    .then((response) => {
+      dispatch(setDetail_data_layanan(response?.data))
+      dispatch(setLoading(false))
     })
     .catch((error) => {
       showMessage(error?.response?.data?.message, "error");
@@ -642,7 +679,7 @@ const paymentBadanHukum = async (data) => (dispatch) => {
   axios
     .post(`${API_HOST.url}/badan-hukum/in-payment`, data)
     .then((response) => {
-      
+
       // console.log("Invoide : " + invoiceId);
       // console.log("Amount :" + amount);
       // console.log(invoiceId);
@@ -714,7 +751,7 @@ const paymentPengamananKorporat =
   };
 
 const paymentPwan =
-  async (finalData, navigate, urlNavigate) => (dispatch) => {
+  async (finalData, navigate) => (dispatch) => {
 
     dispatch(setLoading(true));
     axios
@@ -723,7 +760,7 @@ const paymentPwan =
 
         // console.log("response");
         // console.log(response);
-        
+
         dispatch(setLoading(false));
 
         navigate(`/corporate-security/section/checkout/${response?.data?.data?.order?.id}`)
@@ -749,7 +786,7 @@ const paymentPwan =
   };
 
 const paymentPwanMobile =
-  async (finalData, navigate, urlNavigate) => (dispatch) => {
+  async (finalData, navigate) => (dispatch) => {
 
     dispatch(setLoading(true));
     axios
@@ -758,7 +795,9 @@ const paymentPwanMobile =
 
         dispatch(setLoading(false));
 
-        navigate(`/corporate-security-m/section/checkout/${response?.data?.data?.order?.id}?query=${finalData?.params}`)
+        navigate(`/corporate-security-m/section/checkout/${response?.data?.data?.order?.id}?query=${finalData?.parameter}`)
+
+        // navigate(`/corporate-security-m/section/checkout/${response?.data?.data?.order?.id}?query=${finalData?.params}`)
         // if (values.params) {
         //   if (values.user_id != 9999999999) {
         //     navigate(
@@ -791,8 +830,19 @@ const paymentPWANRingkasan = async (data) => (dispatch) => {
       console.log(error);
 
     })
-  // axios
-  //   .post(`${API_HOST.url}/dashboard/pwa-revamp/history`, data)
+}
+
+const paymentGadaPratama = async (data) => (dispatch) => {
+  axios
+    .post(`${API_HOST.url}/pelatihan/in-payment/${data?.order_id}`)
+    .then((response) => {
+
+      window.location = `${process.env.REACT_APP_API_INVOICE_URL}${response?.data?.data?.invoice_id}`;
+
+    }).catch((error) => {
+      console.log(error);
+
+    })
 }
 
 export {
@@ -826,5 +876,8 @@ export {
   paymentPageOthers,
   paymentPwan,
   paymentPwanMobile,
-  paymentPWANRingkasan
+  paymentPWANRingkasan,
+  pelatihanGadaPratama,
+  pengurusanRingkasanList,
+  paymentGadaPratama
 };
